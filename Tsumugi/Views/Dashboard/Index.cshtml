@@ -1,9 +1,15 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model Tsumugi.Models.Dashboard.DashboardModel
+@{
+    ViewBag.Title = "Dashboard";
 }
 <div class="container">
     <span class="heading">MY WALLETS</span>
-    <div class="center">
-        CENTER
+    <div class="wallet-container">
+        @foreach (var wallet in Model.WalletList)
+        {
+            <div class="wallet">
+                <span class="text">@(wallet.Name)</span>
+            </div>
+        }
     </div>
 </div>

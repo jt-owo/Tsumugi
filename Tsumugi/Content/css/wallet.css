@@ -1,0 +1,29 @@
+﻿:root {
+    --wallet-box-h: 170px;
+}
+
+.wallet-container {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px 20px;
+    grid-template-areas: ". . ."". . ."". . .";
+}
+
+.wallet {
+    background-color: var(--second-color);
+    border-radius: 6px;
+    width: 100%;
+    min-height: var(--wallet-box-h);
+    transition: .4s ease-in-out;
+    position: relative;
+    user-select: none;
+    text-align: center;
+}
+
+    .wallet .text {
+        line-height: var(--wallet-box-h);
+        font-size: 1.75em;
+    }
