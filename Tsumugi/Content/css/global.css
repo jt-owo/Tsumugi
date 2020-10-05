@@ -1,0 +1,39 @@
+﻿:root {
+    --main-color: #1E1E1E;
+    --second-color: #252526;
+    --third-color: #333;
+    --font-color: #FFF;
+    --header-size: 70px;
+    --footer-size: 70px;
+    font: 1.25em arial, helvetica, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    color: var(--font-color);
+}
+
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: var(--main-color);
+}
+
+    body div:first-child {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+    }
+
+    body::-webkit-scrollbar {
+        width: .75rem;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: var(--second-color);
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: var(--third-color);
+    }

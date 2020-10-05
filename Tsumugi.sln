@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsumugi", "Tsumugi\Tsumugi.csproj", "{94941848-CD2D-4AEA-AC16-94EFE1AA9B4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsumugi.Service", "Tsumugi.Service\Tsumugi.Service.csproj", "{70BCF248-B364-4F83-B49D-1A63C97C4AAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{94941848-CD2D-4AEA-AC16-94EFE1AA9B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94941848-CD2D-4AEA-AC16-94EFE1AA9B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94941848-CD2D-4AEA-AC16-94EFE1AA9B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70BCF248-B364-4F83-B49D-1A63C97C4AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70BCF248-B364-4F83-B49D-1A63C97C4AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70BCF248-B364-4F83-B49D-1A63C97C4AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70BCF248-B364-4F83-B49D-1A63C97C4AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
