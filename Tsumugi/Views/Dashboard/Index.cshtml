@@ -1,15 +1,56 @@
 ﻿@model Tsumugi.Models.Dashboard.DashboardModel
-@{
-    ViewBag.Title = "Dashboard";
-}
+@using Tsumugi.Service;
+<style>
+    #login-box {
+        width: 25%;
+        height: 250px;
+        background-color: var(--second-color);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        overflow: auto;
+        -webkit-box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
+        box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
+    }
+
+    .login-box-container {
+        height: 100%;
+    }
+</style>
 <div class="container">
-    <span class="heading">MY WALLETS</span>
-    <div class="wallet-container">
-        @foreach (var wallet in Model.WalletList)
-        {
-            <div class="wallet">
-                <span class="text">@(wallet.Name)</span>
+    @if (TsumugiUser.IsLoggedOn)
+    {
+        <div class="heading">MY WALLETS</div>
+        <div class="wallet-container">
+            @foreach (var wallet in Model.WalletList)
+            {
+                <div class="wallet">
+                    <span class="text">@(wallet.Name)</span>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div id="login-box">
+            <span class="center">LOGIN</span>
+            <div class="login-box-container">
+                <span>E-Mail:</span>
+                <div>
+                    <input type="email" name="email" placeholder="E-Mail..." />
+                </div>
+                <span>Password:</span>
+                <div>
+                    <input type="password" name="password" placeholder="Password..." />
+                </div>
+                <div>
+                    <input type="submit" name="submit" value="LOGIN" />
+                </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>

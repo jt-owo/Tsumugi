@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tsumugi.DummyData
+namespace Tsumugi.Service.DummyData
 {
     public class WalletDummy
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Tsumugi.DummyData;
+using Tsumugi.Service.DummyData;
 
 namespace Tsumugi.Models.Dashboard
 {

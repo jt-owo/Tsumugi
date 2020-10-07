@@ -14,7 +14,14 @@
             <ul>
                 <li><a href="/"><img src="~/Content/images/logo.png" /></a></li>
                 <li><a href="/">TSUMUGI</a></li>
-                <li><a href="/">LOGIN</a></li>
+                @if (Tsumugi.Service.TsumugiUser.IsLoggedOn)
+                {
+                    <li><a href="/Account/Logout">LOGOUT</a></li>
+                }
+                else
+                {
+                    <li><a href="/Account/Login">LOGIN</a></li>
+                }
             </ul>
         </header>
         <div id="content">
