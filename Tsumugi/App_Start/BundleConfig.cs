@@ -15,7 +15,10 @@ namespace Tsumugi
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/global.css",
                       "~/Content/css/layout.css",
-                      "~/Content/css/wallet.css"));
+                      "~/Content/css/wallet.css",
+                      "~/Content/css/utility.css",
+                      "~/Content/css/loginModal.css",
+                      "~/Content/css/dashboard.css"));
         }
     }
 }

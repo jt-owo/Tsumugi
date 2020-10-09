@@ -13,6 +13,14 @@
     color: var(--font-color);
 }
 
+input {
+    color: #FFF !important;
+}
+
+input[type=submit] {
+    color: #000 !important;
+}
+
 html, body {
     height: 100%;
     padding: 0;
@@ -20,7 +28,7 @@ html, body {
     background-color: var(--main-color);
 }
 
-    body div:first-child {
+    body div#main {
         display: flex;
         flex-flow: column;
         height: 100%;

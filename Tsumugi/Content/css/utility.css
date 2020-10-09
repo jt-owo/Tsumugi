@@ -1,0 +1,49 @@
+﻿.alert {
+    padding: 20px;
+    color: white;
+    background-color: #FFF;
+    width: 50%;
+    top: -100px;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+    z-index: 2;
+    -webkit-animation: slide 0.5s forwards;
+    animation: slide 0.5s forwards;
+}
+
+    .alert.success {
+        background-color: #4CAF50 !important;
+    }
+
+    .alert.error {
+        background-color: #f44336 !important;
+    }
+
+@-webkit-keyframes slide {
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes slide {
+    100% {
+        top: 0;
+    }
+}
+
+.closeBtn {
+    margin-left: 15px;
+    color: #FFF;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    user-select: none;
+    cursor: pointer !important;
+    transition: 0.3s;
+}
+
+    .closeBtn:hover {
+        color: #000;
+    }

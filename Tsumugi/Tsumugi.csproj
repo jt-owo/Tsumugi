@@ -130,8 +130,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\dashboard.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\layout.css" />
+    <Content Include="Content\css\loginModal.css" />
+    <Content Include="Content\css\utility.css" />
     <Content Include="Content\css\wallet.css" />
     <Content Include="Content\images\logo.png" />
     <Content Include="favicon.ico" />
@@ -158,7 +161,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

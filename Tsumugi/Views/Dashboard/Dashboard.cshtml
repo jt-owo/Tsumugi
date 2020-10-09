@@ -1,0 +1,74 @@
+﻿@model Tsumugi.Models.Dashboard.DashboardModel
+@using Tsumugi.Service;
+<script>
+    openModal = () => {
+        $('.modal').css({ "display": "block" });
+    }
+
+    closeModal = () => {
+        $('.modal').css({ "display": "none" });
+    }
+</script>
+@using (Html.BeginForm())
+{
+    if (Model.LoginFailed)
+    {
+        <div class="alert error">
+            <span class="closeBtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Login failed:</strong> Either password or email was incorrect, please try again!
+        </div>
+    }
+    <div class="container">
+        @if (TsumugiUser.IsLoggedOn)
+        {
+            <div class="heading">MY WALLETS</div>
+            <div class="wallet-container">
+                @foreach (var wallet in Model.WalletList)
+                {
+                    <div class="wallet">
+                        <span class="text">@(wallet.Name)</span>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            @*<div id="login-box">
+                    <span class="center">REGISTER</span>
+                    <div class="login-box-container">
+                        <span>E-Mail:</span>
+                        <div>
+                            @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "E-Mail..." } })
+                        </div>
+                        <span>Password:</span>
+                        <div>
+                            @Html.PasswordFor(m => m.Password, new { placeholder = "Password..." })
+                        </div>
+                        <span>Confirm Password:</span>
+                        <div>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm password..." })
+                        </div>
+                        <div>
+                            <input type="submit" name="submit" value="LOGIN" />
+                        </div>
+                    </div>
+                </div>*@
+
+            @* LOGIN MODAL *@
+
+            <div id="loginModal" class="modal">
+                <div class="modal-content center">
+                    <span class="close" onclick="closeModal();">&times;</span>
+                    <h1>LOGIN</h1>
+                    <div id="login-container">
+                        <label>E-Mail:</label>
+                        @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "E-Mail..." } })
+                        <label>Password:</label>
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password..." })
+                        <input type="submit" value="LOGIN" name="submit" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -7,19 +7,19 @@ using Tsumugi.Service;
 
 namespace Tsumugi.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        public ActionResult Login()
+        public ActionResult Login(string email, string pw)
         {
             // TODO: Connect to database and login user
             TsumugiUser.UserID = Guid.NewGuid();
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Dashboard", "Dashboard");
         }
 
         public ActionResult Logout()
         {
             TsumugiUser.UserID = null;
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Dashboard", "Dashboard");
         }
     }
 }

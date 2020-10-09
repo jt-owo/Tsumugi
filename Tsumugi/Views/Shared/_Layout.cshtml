@@ -6,10 +6,11 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+    <link rel="icon" href="~/Content/images/logo.png" type="image/png" sizes="16x16">
     <title>Tsumugi - Finance Manager</title>
 </head>
 <body>
-    <div>
+    <div id="main">
         <header>
             <ul>
                 <li><a href="/"><img src="~/Content/images/logo.png" /></a></li>
@@ -20,7 +21,7 @@
                 }
                 else
                 {
-                    <li><a href="/Account/Login">LOGIN</a></li>
+                    <li><a onclick="openModal()">LOGIN</a></li>
                 }
             </ul>
         </header>
