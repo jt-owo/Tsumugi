@@ -20,11 +20,11 @@ namespace Tsumugi.Controllers
         {
             DashboardModel m = new DashboardModel();
             m.LoginFailed = loginFailed ?? false;
+
             if (!TsumugiUser.IsLoggedOn) return View(m);
 
-            m.WalletList.Add(new WalletDummy("Main", 5000));
-            m.WalletList.Add(new WalletDummy("Second", 50000));
-            m.WalletList.Add(new WalletDummy("Third", 50000));
+            m.WalletList = DC.Wallets.Where(a => a.UserID == TsumugiUser.UserID.Value).OrderBy(b => b.Name).Select(c => new WalletListItem(c)).ToList();
+
             return View(m);
         }
 

@@ -23,12 +23,7 @@
         {
             <div class="heading">MY WALLETS</div>
             <div class="wallet-container">
-                @foreach (var wallet in Model.WalletList)
-                {
-                    <div class="wallet">
-                        <span class="text">@(wallet.Name)</span>
-                    </div>
-                }
+                @Html.DisplayFor(m => m.WalletList)
             </div>
         }
         else
