@@ -34,25 +34,25 @@
         else
         {
             @*<div id="login-box">
-                    <span class="center">REGISTER</span>
-                    <div class="login-box-container">
-                        <span>E-Mail:</span>
-                        <div>
-                            @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "E-Mail..." } })
-                        </div>
-                        <span>Password:</span>
-                        <div>
-                            @Html.PasswordFor(m => m.Password, new { placeholder = "Password..." })
-                        </div>
-                        <span>Confirm Password:</span>
-                        <div>
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm password..." })
-                        </div>
-                        <div>
-                            <input type="submit" name="submit" value="LOGIN" />
-                        </div>
+                <span class="center">REGISTER</span>
+                <div class="login-box-container">
+                    <span>E-Mail:</span>
+                    <div>
+                        @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "E-Mail..." } })
                     </div>
-                </div>*@
+                    <span>Password:</span>
+                    <div>
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password..." })
+                    </div>
+                    <span>Confirm Password:</span>
+                    <div>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm password..." })
+                    </div>
+                    <div>
+                        <input type="submit" name="submit" value="LOGIN" />
+                    </div>
+                </div>
+            </div>*@
 
             @* LOGIN MODAL *@
 

@@ -12,7 +12,12 @@ namespace Tsumugi.Controllers
         public ActionResult Login(string email, string pw)
         {
             // TODO: Connect to database and login user
-            TsumugiUser.UserID = Guid.NewGuid();
+            User user = DC.Users.Where(m => m.EMail == email && m.Password == pw).FirstOrDefault();
+            if (user != null)
+            {
+                TsumugiUser.UserID = user.ID;
+            }
+
             return RedirectToAction("Dashboard", "Dashboard");
         }
 
