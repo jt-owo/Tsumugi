@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Tsumugi.Service;
 using Tsumugi.Service.DummyData;
-using Tsumugi.Models.Dashboard;
+using Tsumugi.Models.Detail;
 
 namespace Tsumugi.Controllers
 {
@@ -16,11 +16,16 @@ namespace Tsumugi.Controllers
             return RedirectToAction("Details");
         }
 
-        public ActionResult Detail(Guid? walletID)
+        public ActionResult Detail(Guid walletID)
         {
             if (!TsumugiUser.IsLoggedOn) return RedirectToAction("Dashboard", "Dashboard");
 
-            return View();
+            DetailModel m = new DetailModel();
+            m.DC = DC;
+            m.WalletID = walletID;
+            m.TransactionList = DC.Transactions.Where(a => a.WalletID == walletID).OrderByDescending(b => b.Date).ToList();
+
+            return View(m);
         }
     }
 }
