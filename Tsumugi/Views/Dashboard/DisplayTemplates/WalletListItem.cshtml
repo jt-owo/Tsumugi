@@ -1,5 +1,4 @@
 ﻿@model Tsumugi.Models.Dashboard.WalletListItem
-<div class="wallet">
+<div class="wallet" onclick="openWallet('@(Model.ID)')">
     <span class="text">@(Model.Name)</span>
 </div>
-

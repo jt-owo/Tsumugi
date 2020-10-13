@@ -8,6 +8,10 @@
     closeModal = () => {
         $('.modal').css({ "display": "none" });
     }
+
+    openWallet = (walletID) => {
+        location.href = `/Detail/Detail?walletID=${walletID}`;
+    }
 </script>
 @using (Html.BeginForm())
 {

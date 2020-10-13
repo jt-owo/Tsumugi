@@ -21,6 +21,7 @@
     position: relative;
     user-select: none;
     text-align: center;
+    cursor: pointer;
 }
 
     .wallet .text {

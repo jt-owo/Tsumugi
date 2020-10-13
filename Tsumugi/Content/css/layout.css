@@ -1,4 +1,9 @@
-﻿/* HEADER */
+﻿:root {
+    --header-size: 50px;
+    --footer-size: 50px;
+}
+
+/* HEADER */
 
 header {
     flex: 0 1 var(--header-size);
@@ -22,7 +27,7 @@ header {
             line-height: var(--header-size);
         }
 
-            header ul li:first-child, header ul li:nth-child(2) {
+            header ul li:first-child {
                 float: left;
             }
 
@@ -30,11 +35,11 @@ header {
                     padding: 0;
                 }
 
-                    header ul li:first-child a img {
-                        margin: 2px 0 0 0;
-                        height: 64px !important;
-                        width: 64px !important;
+                    header ul li:first-child img {
+                        height: 32px !important;
+                        width: 32px !important;
                         user-select: none;
+                        vertical-align: middle;
                     }
 
             header ul li a, header ul li span {
@@ -53,6 +58,7 @@ header {
 
 #content {
     flex: 1 1 auto;
+    overflow: hidden;
 }
 
     #content .container {
