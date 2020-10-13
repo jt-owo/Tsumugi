@@ -20,10 +20,12 @@ namespace Tsumugi.Controllers
         {
             if (!TsumugiUser.IsLoggedOn) return RedirectToAction("Dashboard", "Dashboard");
 
-            DetailModel m = new DetailModel();
-            m.DC = DC;
-            m.WalletID = walletID;
-            m.TransactionList = DC.Transactions.Where(a => a.WalletID == walletID).OrderByDescending(b => b.Date).ToList();
+            DetailModel m = new DetailModel
+            {
+                DC = DC,
+                WalletID = walletID,
+                TransactionList = DC.Transactions.Where(a => a.WalletID == walletID).OrderByDescending(b => b.Date).Select(c => new TransactionListItem(c)).ToList()
+            };
 
             return View(m);
         }

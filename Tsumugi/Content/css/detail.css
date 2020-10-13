@@ -1,0 +1,72 @@
+﻿:root {
+    --trans-w: 750px;
+}
+
+.plus {
+    color: green;
+}
+
+.minus {
+    color: red;
+}
+
+.trans-container {
+    background-color: var(--second-color);
+    max-height: 730px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 auto;
+    width: var(--trans-w) !important;
+}
+
+    .trans-container::-webkit-scrollbar {
+        width: .75rem;
+    }
+
+    .trans-container::-webkit-scrollbar-track {
+        background: var(--second-color);
+    }
+
+    .trans-container::-webkit-scrollbar-thumb {
+        background: var(--third-color);
+    }
+
+    .trans-container .transaction:nth-child(odd){
+        background-color: var(--second-color);
+    }
+
+    .trans-container .transaction:nth-child(even){
+        background-color: var(--third-color);
+    }
+
+.transaction {
+    max-width: var(--trans-w);
+    min-width: var(--trans-w);
+    height: 50px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+    .transaction .date {
+        width: 150px;
+        float: left;
+    }
+
+    .transaction .title {
+        width: 150px;
+        float: left;
+    }
+
+    .transaction .note {
+        width: 250px;
+        float: left;
+    }
+
+    .transaction .category {
+        width: 50px;
+        float: left;
+    }
+
+    .transaction .value {
+        float: right;
+    }

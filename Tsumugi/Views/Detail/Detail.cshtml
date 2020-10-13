@@ -1,11 +1,11 @@
 ﻿@model Tsumugi.Models.Detail.DetailModel
 @using Tsumugi.Service;
-<style>
-
-</style>
 @using (Html.BeginForm())
 {
     <div class="container">
         <div class="heading">@(Model.WalletName)</div>
+        <div class="trans-container">
+            @Html.DisplayFor(m => m.TransactionList)
+        </div>
     </div>
 }

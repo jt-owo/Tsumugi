@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\dashboard.css" />
+    <Content Include="Content\css\detail.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\layout.css" />
     <Content Include="Content\css\loginModal.css" />
@@ -168,6 +169,7 @@
     <Content Include="Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Views\Dashboard\DisplayTemplates\WalletListItem.cshtml" />
     <Content Include="Views\Detail\Detail.cshtml" />
+    <Content Include="Views\Detail\DisplayTemplates\TransactionListItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
