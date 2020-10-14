@@ -12,7 +12,7 @@
 }
 
 input {
-    color: #FFF !important;
+    color: #000 !important;
 }
 
 input[type=submit] {

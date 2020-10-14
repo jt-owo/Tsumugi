@@ -1,0 +1,28 @@
+﻿@model Tsumugi.Models.Account.AccountModel
+@using Tsumugi.Service;
+<style>
+    #profile-box {
+        width: 25%;
+        height: 360px;
+        background-color: var(--second-color);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        overflow: auto;
+        -webkit-box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
+        box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
+        color: #FFF;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div id="profile-box">
+           
+        </div>
+    </div>
+}

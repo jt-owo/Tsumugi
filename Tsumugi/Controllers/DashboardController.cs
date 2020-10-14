@@ -16,10 +16,11 @@ namespace Tsumugi.Controllers
             return RedirectToAction("Dashboard");
         }
 
-        public ActionResult Dashboard(bool? loginFailed)
+        public ActionResult Dashboard(bool? loginFailed, string errorMSG)
         {
             DashboardModel m = new DashboardModel();
             m.LoginFailed = loginFailed ?? false;
+            m.ErrorMSG = errorMSG;
 
             if (!TsumugiUser.IsLoggedOn) return View(m);
 
@@ -31,11 +32,15 @@ namespace Tsumugi.Controllers
         [HttpPost]
         public ActionResult Dashboard(DashboardModel m)
         {
-            if(!string.IsNullOrEmpty(m.EMail) && !string.IsNullOrEmpty(m.Password))
+            if (!string.IsNullOrEmpty(m.RegisterFirstName) && !string.IsNullOrEmpty(m.RegisterLastName)
+                && !string.IsNullOrEmpty(m.RegisterEMail) && !string.IsNullOrEmpty(m.RegisterPassword))
+            {
+                return RedirectToAction("Register", "Account", new { email = m.RegisterEMail, pw = m.RegisterPassword, firstName = m.RegisterFirstName, lastName = m.RegisterLastName });
+            }
+            else
             {
                 return RedirectToAction("Login", "Account", new { email = m.EMail, pw = m.Password });
             }
-            return RedirectToAction("Dashboard", new { loginFailed = true });
         }
     }
 }

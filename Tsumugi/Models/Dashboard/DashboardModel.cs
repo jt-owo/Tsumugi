@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Tsumugi.Service;
-using Tsumugi.Service.DummyData;
 
 namespace Tsumugi.Models.Dashboard
 {
@@ -11,9 +10,20 @@ namespace Tsumugi.Models.Dashboard
     {
         public string EMail { get; set; }
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+
+        #region Register Props
+
+        public string RegisterEMail { get; set; }
+        public string RegisterPassword { get; set; }
+        public string RegisterConfirmPassword { get; set; }
+        public string RegisterFirstName { get; set; }
+        public string RegisterLastName { get; set; }
+
+        #endregion
 
         public bool LoginFailed { get; set; } = false;
+        public string ErrorMSG { get; set; }
+        public bool Register { get; set; } = true;
 
         public List<WalletListItem> WalletList { get; set; } = new List<WalletListItem>();
     }
