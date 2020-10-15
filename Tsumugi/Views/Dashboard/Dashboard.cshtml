@@ -2,7 +2,32 @@
 @using Tsumugi.Service;
 <script>
     $(function () {
-        document.getElementById('register-tab-btn').click();
+        //document.getElementById('register-tab-btn').click();
+
+        const clickable = document.getElementById('clickable')
+        const menu = document.getElementById('menu')
+        const outClick = document.getElementById('out-click')
+
+        window.addEventListener('resize', e => {
+            menu.classList.remove('show')
+            outClick.style.display = "none"                
+        });
+
+        clickable.addEventListener('click', e => {
+            e.preventDefault()
+
+            menu.style.top = `${e.clientY}px`
+            menu.style.left = `${e.clientX}px`
+            menu.classList.add('show')
+
+            outClick.style.display = "block"
+            e.stopPropagation();
+        })
+
+        outClick.addEventListener('click', () => {
+            menu.classList.remove('show')
+            outClick.style.display = "none"
+        });
     });
 
     openModal = () => {
@@ -15,6 +40,10 @@
 
     openWallet = (walletID) => {
         location.href = `/Detail/Detail?walletID=${walletID}`;
+    }
+
+    openOptions = (walletID) => {
+        //
     }
 
     function openTab(evt, tabName) {
@@ -33,6 +62,49 @@
         evt.currentTarget.className += " active";
     }
 </script>
+<style>
+
+    #menu {
+        display: block;
+        background-color: white;
+        padding: 10px 0px;
+        border-radius: 5px;
+        position: absolute;
+        transform-origin: center;
+        z-index: 2;
+        opacity: 0;
+        transform: scale(0);
+        transition: transform 0.2s, opacity 0.2s;
+    }
+
+        #menu.show {
+            opacity: 1;
+            transform: scale(1);
+            transform-origin: top left;
+        }
+
+    .menu-item {
+        display: block;
+        padding: 10px 30px;
+        transition: 0.1s;
+        color: #666;
+    }
+
+        .menu-item:hover {
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+    #out-click {
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: none;
+    }
+</style>
 @if (Model.LoginFailed && !string.IsNullOrEmpty(Model.ErrorMSG))
 {
     <div class="alert error">
@@ -46,7 +118,17 @@
         <div class="heading">MY WALLETS</div>
         <div class="wallet-container">
             @Html.DisplayFor(m => m.WalletList)
+            <div class="wallet-template">
+                <div class="circle plus"></div>
+            </div>
         </div>
+
+        <ul id="menu">
+            <li class="menu-item">Rename Wallet</li>
+            <li class="menu-item">Delete Wallet</li>
+        </ul>
+
+        <div id="out-click"></div>
     }
     else
     {
@@ -100,17 +182,17 @@
         </div>
 
         @*<div id="loginModal" class="modal">
-            <div class="modal-content center">
-                <span class="close" onclick="closeModal();">&times;</span>
-                <h1>LOGIN</h1>
-                <div id="login-container">
-                    <label>E-Mail:</label>
-                    @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "E-Mail..." } })
-                    <label>Password:</label>
-                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password..." })
-                    <input type="submit" value="LOGIN" name="submit" />
+                <div class="modal-content center">
+                    <span class="close" onclick="closeModal();">&times;</span>
+                    <h1>LOGIN</h1>
+                    <div id="login-container">
+                        <label>E-Mail:</label>
+                        @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "E-Mail..." } })
+                        <label>Password:</label>
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password..." })
+                        <input type="submit" value="LOGIN" name="submit" />
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
     }
 </div>

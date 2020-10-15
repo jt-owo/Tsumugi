@@ -1,5 +1,5 @@
 ﻿:root {
-    --wallet-box-h: 170px;
+    --wallet-box-h: 150px;
 }
 
 .wallet-container {
@@ -12,19 +12,135 @@
     grid-template-areas: ". . ."". . ."". . .";
 }
 
+.quick-view {
+    background-color: var(--third-color);
+    border-radius: 10px;
+    width: 100%;
+    min-width: 300px;
+    min-height: var(--wallet-box-h);
+    transition: .2s ease-in-out;
+    position: absolute;
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+    top: 0;
+}
+
 .wallet {
     background-color: var(--second-color);
-    border-radius: 6px;
+    border-radius: 10px;
     width: 100%;
+    min-width: 300px;
     min-height: var(--wallet-box-h);
-    transition: .4s ease-in-out;
+    transition: .2s ease-in-out;
     position: relative;
     user-select: none;
     text-align: center;
     cursor: pointer;
 }
 
+    .wallet:hover > .quick-view {
+        top: 50px;
+    }
+
     .wallet .text {
         line-height: var(--wallet-box-h);
         font-size: 1.75em;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .wallet .options {
+        position: relative;
+        background: var(--third-color);
+        width: 30px;
+        height: 30px;
+        color: white;
+        border-radius: 50%;
+        float: right;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+        .wallet .options:after {
+            content: '•••';
+            position: absolute;
+            top: 45%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            font-size: 11px;
+            letter-spacing: 4px;
+            margin-top: 2px;
+        }
+
+        .wallet .options:hover {
+            background-color: var(--fourth-color);
+        }
+
+.wallet-template {
+    border: 2px dotted white;
+    border-radius: 10px;
+    width: 100%;
+    min-width: 300px;
+    min-height: var(--wallet-box-h);
+    transition: .2s ease-in-out;
+    position: relative;
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+    .wallet-template div {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: auto;
+    }
+
+.circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+    position: relative;
+    margin: 4px;
+    border: 1px solid white;
+}
+
+    .circle:hover {
+        background: radial-gradient(#aaa, #fff);
+    }
+
+    .circle:active {
+        background: #6363634f;
+    }
+
+    .circle:before, .circle:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    /* PLUS */
+    .circle.plus:before, .circle.plus:after {
+        background: white;
+    }
+
+    .circle.plus:before {
+        margin: 15px auto;
+        width: 2px;
+    }
+
+    .circle.plus:after {
+        margin: auto 15px;
+        height: 2px;
     }
