@@ -12,8 +12,16 @@
     grid-template-areas: ". . ."". . ."". . .";
 }
 
-.quick-view {
-    background-color: var(--third-color);
+.wallet-wrapper {
+    position: relative;
+}
+
+    .wallet-wrapper:hover .quick-view {
+        top: 50px;
+    }
+
+.wallet {
+    background-color: var(--second-color);
     border-radius: 10px;
     width: 100%;
     min-width: 300px;
@@ -25,23 +33,6 @@
     cursor: pointer;
     top: 0;
 }
-
-.wallet {
-    background-color: var(--second-color);
-    border-radius: 10px;
-    width: 100%;
-    min-width: 300px;
-    min-height: var(--wallet-box-h);
-    transition: .2s ease-in-out;
-    position: relative;
-    user-select: none;
-    text-align: center;
-    cursor: pointer;
-}
-
-    .wallet:hover > .quick-view {
-        top: 50px;
-    }
 
     .wallet .text {
         line-height: var(--wallet-box-h);
@@ -76,6 +67,26 @@
         .wallet .options:hover {
             background-color: var(--fourth-color);
         }
+
+.quick-view {
+    background-color: var(--third-color);
+    border-radius: 10px;
+    width: 100%;
+    min-width: 300px;
+    min-height: var(--wallet-box-h);
+    transition: .2s ease-in-out;
+    position: relative;
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+    top: 0;
+}
+
+    .quick-view .text {
+        position: absolute;
+        bottom: 13px;
+        right: 8px;
+    }
 
 .wallet-template {
     border: 2px dotted white;
