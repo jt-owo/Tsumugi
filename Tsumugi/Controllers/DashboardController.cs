@@ -37,10 +37,24 @@ namespace Tsumugi.Controllers
             {
                 return RedirectToAction("Register", "Account", new { email = m.RegisterEMail, pw = m.RegisterPassword, firstName = m.RegisterFirstName, lastName = m.RegisterLastName });
             }
-            else
+            else if(!string.IsNullOrEmpty(m.EMail) && !string.IsNullOrEmpty(m.Password))
             {
                 return RedirectToAction("Login", "Account", new { email = m.EMail, pw = m.Password });
             }
+            else if (!string.IsNullOrEmpty(m.WalletName) && TsumugiUser.UserID.HasValue)
+            {
+                Wallet w = new Wallet
+                {
+                    ID = Guid.NewGuid(),
+                    UserID = TsumugiUser.UserID.Value,
+                    Name = m.WalletName,
+                    Sum = 0
+                };
+
+                DC.Wallets.InsertOnSubmit(w);
+                DC.SubmitChanges();
+            }
+            return RedirectToAction("Dashboard");
         }
     }
 }

@@ -2,30 +2,28 @@
 @using Tsumugi.Service;
 <script>
     $(function () {
-        document.getElementById('register-tab-btn').click();
+        let regTab = document.getElementById('register-tab-btn');
+        if (regTab !== null && regTab !== undefined) {
+            document.getElementById('register-tab-btn').click();
+        }
 
         const clickable = document.getElementById('clickable')
         const menu = document.getElementById('menu')
         const outClick = document.getElementById('out-click')
 
         window.addEventListener('resize', e => {
-            menu.classList.remove('show')
-            outClick.style.display = "none"                
+            menu.classList.remove('show');
+            outClick.style.display = "none";               
         });
 
         clickable.addEventListener('click', e => {
             e.preventDefault();
 
-            let walletID = $(e.target).data("wallet-id");
+            menu.style.top = `${e.clientY}px`;
+            menu.style.left = `${e.clientX}px`;
+            menu.classList.add('show');
 
-            $("#renameItem").data("wallet-id", walletID);
-            $("#deleteItem").data("wallet-id", walletID);
-
-            menu.style.top = `${e.clientY}px`
-            menu.style.left = `${e.clientX}px`
-            menu.classList.add('show')
-
-            outClick.style.display = "block"
+            outClick.style.display = "block";
             e.stopPropagation();
         })
 
