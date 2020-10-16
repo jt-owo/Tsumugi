@@ -18,8 +18,7 @@ namespace Tsumugi
                       "~/Content/css/dashboard.css",
                       "~/Content/css/wallet.css",
                       "~/Content/css/detail.css",
-                      "~/Content/css/utility.css",
-                      "~/Content/css/loginModal.css"));
+                      "~/Content/css/utility.css"));
         }
     }
 }

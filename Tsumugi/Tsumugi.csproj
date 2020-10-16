@@ -139,7 +139,6 @@
     <Content Include="Content\css\detail.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\layout.css" />
-    <Content Include="Content\css\loginModal.css" />
     <Content Include="Content\css\utility.css" />
     <Content Include="Content\css\wallet.css" />
     <Content Include="Content\images\logo.png" />

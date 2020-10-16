@@ -24,7 +24,7 @@ namespace Tsumugi.Controllers
 
             if (!TsumugiUser.IsLoggedOn) return View(m);
 
-            m.WalletList = DC.Wallets.Where(a => a.UserID == TsumugiUser.UserID.Value).OrderBy(b => b.Name).Select(c => new WalletListItem(c)).ToList();
+            m.WalletList = DC.Wallets.Where(a => a.UserID == TsumugiUser.UserID.Value).OrderBy(b => b.Name).Select(c => new WalletListItem(c, DC)).ToList();
 
             return View(m);
         }

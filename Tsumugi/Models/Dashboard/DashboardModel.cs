@@ -25,6 +25,9 @@ namespace Tsumugi.Models.Dashboard
         public string ErrorMSG { get; set; }
         public bool Register { get; set; } = true;
 
+        public string WalletName { get; set; }
+        public string NewWalletName { get; set; }
+
         public List<WalletListItem> WalletList { get; set; } = new List<WalletListItem>();
     }
 
@@ -34,13 +37,40 @@ namespace Tsumugi.Models.Dashboard
         public Guid UserID { get; set; }
         public string Name { get; set; }
         public decimal Sum { get; set; }
+        public string QuickViewSum
+        {
+            get
+            {
+                return quickViewSum > 0 ? $"+{quickViewSum}" : $"-{quickViewSum}";
+            }
+        }
+        public string QuickViewColor
+        {
+            get
+            {
+                return quickViewSum > 0 ? "plus" : "minus";
+            }
+        }
 
-        public WalletListItem(Wallet w)
+        private decimal quickViewSum;
+
+        public TsumugiDataContext DC { get; set; }
+
+        public WalletListItem(Wallet w, TsumugiDataContext dc)
         {
             ID = w.ID;
             UserID = w.UserID;
             Name = w.Name;
             Sum = w.Sum ?? 0;
+            DC = dc;
+
+            foreach (var transaction in DC.Transactions.Where(a => a.WalletID == w.ID && a.Date >= DateTime.Now.AddDays(-30)))
+            {
+                if (transaction.Type)
+                    quickViewSum += transaction.Value;
+                else
+                    quickViewSum -= transaction.Value;
+            }
         }
     }
 }

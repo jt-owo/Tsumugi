@@ -1,10 +1,10 @@
 ﻿@model Tsumugi.Models.Dashboard.WalletListItem
 <div class="wallet-wrapper">
     <div class="quick-view">
-        <div class="text">@(Model.Sum)</div>
+        <div class="text @(Model.QuickViewColor)">@(Model.QuickViewSum)</div>
     </div>
     <div class="wallet" onclick="openWallet('@(Model.ID)')">
-        <div class="options" id="clickable" onclick="openOptions('@(Model.ID)')"></div>
+        <div class="options" id="clickable"></div>
         <div class="text">@(Model.Name)</div>
     </div>
 </div>

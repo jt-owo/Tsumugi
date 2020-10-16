@@ -2,7 +2,7 @@
 @using Tsumugi.Service;
 <script>
     $(function () {
-        //document.getElementById('register-tab-btn').click();
+        document.getElementById('register-tab-btn').click();
 
         const clickable = document.getElementById('clickable')
         const menu = document.getElementById('menu')
@@ -14,7 +14,12 @@
         });
 
         clickable.addEventListener('click', e => {
-            e.preventDefault()
+            e.preventDefault();
+
+            let walletID = $(e.target).data("wallet-id");
+
+            $("#renameItem").data("wallet-id", walletID);
+            $("#deleteItem").data("wallet-id", walletID);
 
             menu.style.top = `${e.clientY}px`
             menu.style.left = `${e.clientX}px`
@@ -30,20 +35,20 @@
         });
     });
 
-    openModal = () => {
-        $('.modal').css({ "display": "block" });
-    }
-
-    closeModal = () => {
-        $('.modal').css({ "display": "none" });
-    }
-
     openWallet = (walletID) => {
         location.href = `/Detail/Detail?walletID=${walletID}`;
     }
 
-    openOptions = (walletID) => {
-        //
+    newWallet = () => {
+        $('#walletModal').css({ "display": "block" });
+    }
+
+    closeNewWalletModal = () => {
+        $('#walletModal').css({ "display": "none" });
+    }
+
+    closeRenameWalletModal = (e) => {
+        $('#renameWalletModal').css({ "display": "none" });
     }
 
     function openTab(evt, tabName) {
@@ -62,49 +67,6 @@
         evt.currentTarget.className += " active";
     }
 </script>
-<style>
-
-    #menu {
-        display: block;
-        background-color: white;
-        padding: 10px 0px;
-        border-radius: 5px;
-        position: absolute;
-        transform-origin: center;
-        z-index: 2;
-        opacity: 0;
-        transform: scale(0);
-        transition: transform 0.2s, opacity 0.2s;
-    }
-
-        #menu.show {
-            opacity: 1;
-            transform: scale(1);
-            transform-origin: top left;
-        }
-
-    .menu-item {
-        display: block;
-        padding: 10px 30px;
-        transition: 0.1s;
-        color: #666;
-    }
-
-        .menu-item:hover {
-            background-color: #eee;
-            cursor: pointer;
-        }
-
-    #out-click {
-        height: 100vh;
-        width: 100vw;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        display: none;
-    }
-</style>
 @if (Model.LoginFailed && !string.IsNullOrEmpty(Model.ErrorMSG))
 {
     <div class="alert error">
@@ -119,16 +81,46 @@
         <div class="wallet-container">
             @Html.DisplayFor(m => m.WalletList)
             <div class="wallet-template">
-                <div class="circle plus"></div>
+                <div class="circle plus" onclick="newWallet();"></div>
             </div>
         </div>
 
+        // CONTEXT MENU
         <ul id="menu">
-            <li class="menu-item">Rename Wallet</li>
-            <li class="menu-item">Delete Wallet</li>
+            <li class="menu-item" id="renameItem" onclick="renameWallet()">Rename Wallet</li>
+            <li class="menu-item" id="deleteItem" onclick="deleteWallet()">Delete Wallet</li>
         </ul>
-
         <div id="out-click"></div>
+
+        // NEW WALLET MODAL
+        <div id="walletModal" class="modal">
+            <div class="modal-content center">
+                <span class="close" onclick="closeNewWalletModal();">&times;</span>
+                <h4>ADD NEW WALLET</h4>
+                <div id="wallet-modal-container">
+                    <form action="/Dashboard/Dashboard" method="post">
+                        <label>Name:</label>
+                        @Html.EditorFor(m => m.WalletName)
+                        <input type="submit" value="CREATE" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        // RENAME WALLET MODAL
+        <div id="renameWalletModal" class="modal">
+            <div class="modal-content center">
+                <span class="close" onclick="closeRenameWalletModal();">&times;</span>
+                <h4>RENAME WALLET</h4>
+                <div id="wallet-modal-container">
+                    <form action="/Dashboard/Dashboard" method="post">
+                        <label>Name:</label>
+                        @Html.EditorFor(m => m.NewWalletName)
+                        <input type="submit" value="SAVE" />
+                    </form>
+                </div>
+            </div>
+        </div>
     }
     else
     {
@@ -180,19 +172,5 @@
                 </form>
             </div>
         </div>
-
-        @*<div id="loginModal" class="modal">
-                <div class="modal-content center">
-                    <span class="close" onclick="closeModal();">&times;</span>
-                    <h1>LOGIN</h1>
-                    <div id="login-container">
-                        <label>E-Mail:</label>
-                        @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "E-Mail..." } })
-                        <label>Password:</label>
-                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password..." })
-                        <input type="submit" value="LOGIN" name="submit" />
-                    </div>
-                </div>
-            </div>*@
     }
 </div>
