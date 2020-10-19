@@ -16,6 +16,7 @@ namespace Tsumugi.Controllers
         {
             User user = new User
             {
+                ID = Guid.NewGuid(),
                 EMail = email,
                 Password = Password.HashSHA256(pw),
                 FirstName = firstName,
