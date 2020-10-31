@@ -25,8 +25,8 @@ namespace Tsumugi.Models.Dashboard
         public string ErrorMSG { get; set; }
         public bool Register { get; set; } = true;
 
-        public string WalletName { get; set; }
         public string NewWalletName { get; set; }
+        public string RenameWalletName { get; set; }
 
         public List<WalletListItem> WalletList { get; set; } = new List<WalletListItem>();
     }

@@ -1,32 +1,36 @@
 ﻿@model Tsumugi.Models.Dashboard.DashboardModel
 @using Tsumugi.Service;
 <script>
+    var walletID = null;
+
     $(function () {
         let regTab = document.getElementById('register-tab-btn');
         if (regTab !== null && regTab !== undefined) {
             document.getElementById('register-tab-btn').click();
         }
 
-        const clickable = document.getElementById('clickable')
-        const menu = document.getElementById('menu')
-        const outClick = document.getElementById('out-click')
+        const menu = document.getElementById('menu');
+        const outClick = document.getElementById('out-click');
 
         window.addEventListener('resize', e => {
             menu.classList.remove('show');
             outClick.style.display = "none";               
         });
 
-        clickable.addEventListener('click', e => {
-            e.preventDefault();
+        $(".options").each((i, el) => {
+            el.addEventListener('click', e => {
+                e.preventDefault();
+                walletID = $(e.target.parentElement).data("id");
 
-            menu.style.top = `${e.clientY}px`;
-            menu.style.left = `${e.clientX}px`;
-            menu.classList.add('show');
+                menu.style.top = `${e.clientY}px`;
+                menu.style.left = `${e.clientX}px`;
+                menu.classList.add('show');
 
-            outClick.style.display = "block";
-            e.stopPropagation();
-        })
-
+                outClick.style.display = "block";
+                e.stopPropagation();
+            })
+        });
+        
         outClick.addEventListener('click', () => {
             menu.classList.remove('show')
             outClick.style.display = "none"
@@ -37,6 +41,8 @@
         location.href = `/Detail/Detail?walletID=${walletID}`;
     }
 
+    /* NEW WALLET */
+
     newWallet = () => {
         $('#walletModal').css({ "display": "block" });
     }
@@ -45,8 +51,37 @@
         $('#walletModal').css({ "display": "none" });
     }
 
-    closeRenameWalletModal = (e) => {
+    /* RENAME WALLET */
+
+    openRenameWallet = () => {
+        if (walletID == null) { return; }
+        $('#renameWalletModal').css({ "display": "block" });
+        menu.classList.remove('show');
+    }
+
+    renameWallet = () => {
+        let walletName = $("#RenameWalletName").val();
+        $.post("/Json/RenameWallet", { walletID: walletID, newName: walletName });
+    }
+
+    closeRenameWalletModal = () => {
         $('#renameWalletModal').css({ "display": "none" });
+    }
+
+    /* DELETE WALLET */
+
+    openDeleteWallet = () => {
+        if (walletID == null) { return; }
+        $('#deleteWalletModal').css({ "display": "block" });
+        menu.classList.remove('show');
+    }
+
+    deleteWallet = () => {
+        $.post("/Json/DeleteWallet", { walletID: walletID });
+    }
+
+    closeDeleteWalletModal = () => {
+        $('#deleteWalletModal').css({ "display": "none" });
     }
 
     function openTab(evt, tabName) {
@@ -85,8 +120,8 @@
 
         // CONTEXT MENU
         <ul id="menu">
-            <li class="menu-item" id="renameItem" onclick="renameWallet()">Rename Wallet</li>
-            <li class="menu-item" id="deleteItem" onclick="deleteWallet()">Delete Wallet</li>
+            <li class="menu-item" id="renameItem" onclick="openRenameWallet()">Rename Wallet</li>
+            <li class="menu-item" id="deleteItem" onclick="openDeleteWallet()">Delete Wallet</li>
         </ul>
         <div id="out-click"></div>
 
@@ -98,7 +133,7 @@
                 <div id="wallet-modal-container">
                     <form action="/Dashboard/Dashboard" method="post">
                         <label>Name:</label>
-                        @Html.EditorFor(m => m.WalletName)
+                        @Html.EditorFor(m => m.NewWalletName)
                         <input type="submit" value="CREATE" />
                     </form>
                 </div>
@@ -113,8 +148,23 @@
                 <div id="wallet-modal-container">
                     <form action="/Dashboard/Dashboard" method="post">
                         <label>Name:</label>
-                        @Html.EditorFor(m => m.NewWalletName)
-                        <input type="submit" value="SAVE" />
+                        @Html.EditorFor(m => m.RenameWalletName)
+                        <input type="submit" value="SAVE" onclick="renameWallet();" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        // DELETE WALLET MODAL
+        <div id="deleteWalletModal" class="modal">
+            <div class="modal-content center">
+                <span class="close" onclick="closeDeleteWalletModal();">&times;</span>
+                <h4>DELETE WALLET</h4>
+                <div id="wallet-modal-container">
+                    <form action="/Dashboard/Dashboard" method="post">
+                        <p>Do you really want to delete this wallet?</p>
+                        <input type="submit" value="YES" onclick="deleteWallet();" />
+                        <input type="submit" value="NO" onclick="return;" />
                     </form>
                 </div>
             </div>

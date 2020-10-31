@@ -41,13 +41,13 @@ namespace Tsumugi.Controllers
             {
                 return RedirectToAction("Login", "Account", new { email = m.EMail, pw = m.Password });
             }
-            else if (!string.IsNullOrEmpty(m.WalletName) && TsumugiUser.UserID.HasValue)
+            else if (!string.IsNullOrEmpty(m.NewWalletName) && TsumugiUser.UserID.HasValue)
             {
                 Wallet w = new Wallet
                 {
                     ID = Guid.NewGuid(),
                     UserID = TsumugiUser.UserID.Value,
-                    Name = m.WalletName,
+                    Name = m.NewWalletName,
                     Sum = 0
                 };
 
