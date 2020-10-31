@@ -113,9 +113,12 @@
         <div class="heading">MY WALLETS</div>
         <div class="wallet-container">
             @Html.DisplayFor(m => m.WalletList)
-            <div class="wallet-template">
-                <div class="circle plus" onclick="newWallet();"></div>
-            </div>
+            @if (Model.WalletList.Count < 9)
+            {
+                <div class="wallet-template">
+                    <div class="circle plus" onclick="newWallet();"></div>
+                </div>
+            }
         </div>
 
         // CONTEXT MENU

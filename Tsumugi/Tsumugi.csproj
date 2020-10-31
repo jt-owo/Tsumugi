@@ -143,6 +143,7 @@
     <Content Include="Content\css\utility.css" />
     <Content Include="Content\css\wallet.css" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\vibe-cat.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

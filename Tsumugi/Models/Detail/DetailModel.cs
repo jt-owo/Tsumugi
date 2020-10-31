@@ -22,6 +22,14 @@ namespace Tsumugi.Models.Detail
             }
         }
 
+        public bool VibeCat
+        {
+            get
+            {
+                return Wallet.Name.ToUpper() == "CAT";
+            }
+        }
+
         public Wallet Wallet
         {
             get

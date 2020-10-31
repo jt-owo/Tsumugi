@@ -8,4 +8,10 @@
             @Html.DisplayFor(m => m.TransactionList)
         </div>
     </div>
+    if (Model.VibeCat)
+    {
+        <div id="vibe-cat">
+            <img src="~/Content/images/vibe-cat.gif" />
+        </div>
+    }
 }
