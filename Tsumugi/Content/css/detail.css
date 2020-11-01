@@ -1,5 +1,6 @@
 ﻿:root {
     --trans-w: 750px;
+    --chart-w: 250px;
 }
 
 .plus {
@@ -10,13 +11,25 @@
     color: red;
 }
 
+.detail-wrapper {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.detail-wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .trans-container {
     background-color: var(--second-color);
     max-height: 730px;
     overflow-y: auto;
     overflow-x: hidden;
-    margin: 0 auto;
     width: var(--trans-w) !important;
+    float: left;
+    margin-left: 10px;
 }
 
     .trans-container::-webkit-scrollbar {
@@ -45,7 +58,12 @@
     height: 50px;
     padding: 15px;
     margin: 0 auto;
+    user-select: none;
 }
+
+    .transaction:hover {
+        border: 1px solid #FFF;
+    }
 
     .transaction .date {
         width: 150px;
@@ -69,8 +87,24 @@
 
     .transaction .value {
         float: right;
+        margin-right: 10px;
     }
 
+.chart-container {
+    width: var(--chart-w) !important;
+    float: left;
+    max-height: 730px;
+    background-color: var(--second-color);
+    height: 100%;
+}
+
+    .chart-container h3 {
+        text-align: center;
+    }
+
+    .chart-container #trend {
+        text-align: center;
+    }
 
 #vibe-cat img {
     position: absolute;

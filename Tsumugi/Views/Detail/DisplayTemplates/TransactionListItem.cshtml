@@ -1,5 +1,5 @@
 ﻿@model Tsumugi.Models.Detail.TransactionListItem
-<div class="transaction">
+<div class="transaction" onclick="openDetail('@(Model.ID)')">
     <div class="date">@(Model.DateFormatted)</div>
     <div class="title">@(Model.Title)</div>
     <div class="note">@(Model.Note)</div>

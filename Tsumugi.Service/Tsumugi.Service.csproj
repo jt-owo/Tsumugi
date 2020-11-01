@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chart.cs" />
     <Compile Include="DummyData\WalletDummy.cs" />
     <Compile Include="Password.cs" />
     <Compile Include="Program.cs" />

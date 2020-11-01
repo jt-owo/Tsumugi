@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tsumugi.Models.Detail;
 using Tsumugi.Service;
 
 namespace Tsumugi.Controllers
@@ -29,6 +30,18 @@ namespace Tsumugi.Controllers
             {
                 // EXECUTE DELETE STORED PROCEDURES
                 return Json(wallet.Name, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetTransaction(Guid transactionID)
+        {
+            Transaction transaction = DC.Transactions.Where(m => m.ID == transactionID).FirstOrDefault();
+            if(transaction != null)
+            {
+                TransactionListItem item = new TransactionListItem(transaction);
+                return Json(item, JsonRequestBehavior.AllowGet);
             }
 
             return Json(false, JsonRequestBehavior.AllowGet);

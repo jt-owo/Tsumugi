@@ -2,10 +2,140 @@
 @using Tsumugi.Service;
 @using (Html.BeginForm())
 {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script>
+        $(function () {
+            createTrendChart();
+            createMonthChart();
+
+            window.onclick = function (event) {
+                if (event.target == document.getElementById('detailModal')) {
+                    document.getElementById('detailModal').style.display = "none";
+                }
+            }
+        });
+
+        function createTrendChart() {
+            var ctx = document.getElementById('trendChart').getContext('2d');
+            var trendChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        function createMonthChart() {
+            var ctx = document.getElementById('monthsChart').getContext('2d');
+            var monthChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['EARNINGS', 'SPENDINGS'],
+                    datasets: [{
+                        label: 'Amount of Money',
+                        data: [@(Model.MonthlyEarnings), @(Model.MonthlySpendings)],
+                        backgroundColor: [
+                            'rgba(0, 150, 0, 0.2)',
+                            'rgba(150, 0, 0, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(0, 200, 0, 1)',
+                            'rgba(200, 0, 0, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        /* TRANSACTION DETAIL */
+
+        openDetail = (transactionID) => {
+            $.post("/Json/GetTransaction/", { transactionID: transactionID })
+                .done(function (data) {
+                    if (fillDetails(data)) {
+                        $('#detailModal').css({ "display": "block" });
+                    }
+                });
+        }
+
+        closeDetailModal = () => {
+            $('#detailModal').css({ "display": "none" });
+        }
+
+        fillDetails = (transaction) => {
+            if (transaction != null && transaction != undefined) {
+                $("#detail-date").html(transaction.DateFormatted);
+                $("#detail-title").html(transaction.Title);
+                $("#detail-note").html(transaction.Note);
+                $("#detail-value").html(transaction.ValueFormatted);
+                //$("#detail-category").html(transaction.CategoryFormatted);
+
+                return true;
+            }
+
+            return false;
+        }
+
+    </script>
     <div class="container">
         <div class="heading">@(Model.WalletName)</div>
-        <div class="trans-container">
-            @Html.DisplayFor(m => m.TransactionList)
+        <div class="detail-wrapper">
+            <div class="chart-container">
+                <div id="trend">
+                    <h3>TREND</h3>
+                    <canvas id="trendChart" width="400" height="400"></canvas>
+                </div>
+                <div id="months">
+                    <h3>THIS MONTH</h3>
+                    <canvas id="monthsChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+            <div class="trans-container">
+                @Html.DisplayFor(m => m.TransactionList)
+            </div>
         </div>
     </div>
     if (Model.VibeCat)
@@ -14,4 +144,35 @@
             <img src="~/Content/images/vibe-cat.gif" />
         </div>
     }
+    // DETAIL MODAL
+    <div id="detailModal" class="modal">
+        <div class="modal-content center">
+            <span class="close" onclick="closeDetailModal();">&times;</span>
+            <h4>TRANSACTION DETAIL</h4>
+            <div id="wallet-modal-container">
+                <table>
+                    <tr>
+                        <td>Date:</td>
+                        <td><span id="detail-date">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>Title:</td>
+                        <td><span id="detail-title">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>Note:</td>
+                        <td><span id="detail-note">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>Value:</td>
+                        <td><span id="detail-value">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>Category:</td>
+                        <td><span id="detail-category">-</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 }

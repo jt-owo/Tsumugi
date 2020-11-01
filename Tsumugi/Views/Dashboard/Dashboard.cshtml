@@ -136,7 +136,7 @@
                 <div id="wallet-modal-container">
                     <form action="/Dashboard/Dashboard" method="post">
                         <label>Name:</label>
-                        @Html.EditorFor(m => m.NewWalletName)
+                        @Html.EditorFor(m => m.NewWalletName, new { htmlAttributes = new { required = true } })
                         <input type="submit" value="CREATE" />
                     </form>
                 </div>
@@ -151,7 +151,7 @@
                 <div id="wallet-modal-container">
                     <form action="/Dashboard/Dashboard" method="post">
                         <label>Name:</label>
-                        @Html.EditorFor(m => m.RenameWalletName)
+                        @Html.EditorFor(m => m.RenameWalletName, new { htmlAttributes = new { required = true } })
                         <input type="submit" value="SAVE" onclick="renameWallet();" />
                     </form>
                 </div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using Tsumugi.Service;
@@ -12,6 +13,9 @@ namespace Tsumugi.Models.Detail
         public Guid WalletID { get; set; }
         public List<TransactionListItem> TransactionList { get; set; } = new List<TransactionListItem>();
         public TsumugiDataContext DC { get; set; }
+
+        public decimal MonthlyEarnings { get; set; } = 0;
+        public decimal MonthlySpendings { get; set; } = 0;
 
         public string WalletName
         {
@@ -73,7 +77,7 @@ namespace Tsumugi.Models.Detail
         {
             get
             {
-                return Type ? $"+{Value}" : $"-{Value}";
+                return Type ? $"+{Value}€" : $"-{Value}€";
             }
         }
 
