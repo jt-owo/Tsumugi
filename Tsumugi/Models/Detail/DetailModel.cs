@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using Tsumugi.Service;
-using Tsumugi.Service.DummyData;
 
 namespace Tsumugi.Models.Detail
 {
@@ -16,6 +16,7 @@ namespace Tsumugi.Models.Detail
 
         public decimal MonthlyEarnings { get; set; } = 0;
         public decimal MonthlySpendings { get; set; } = 0;
+        public decimal Trend { get; set; } = 0;
 
         public string WalletName
         {
@@ -31,6 +32,30 @@ namespace Tsumugi.Models.Detail
             get
             {
                 return Wallet.Name.ToUpper() == "CAT";
+            }
+        }
+
+        public string CurrentMonthLabel
+        {
+            get
+            {
+                return new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).ToString("MMM", CultureInfo.InvariantCulture);
+            }
+        }
+
+        public string NextMonthLabel
+        {
+            get
+            {
+                return new DateTime(DateTime.Now.AddMonths(1).Year, DateTime.Now.AddMonths(1).Month, 1).ToString("MMM", CultureInfo.InvariantCulture);
+            }
+        }
+
+        public string AfterNextMonthLabel
+        {
+            get
+            {
+                return new DateTime(DateTime.Now.AddMonths(2).Year, DateTime.Now.AddMonths(2).Month, 1).ToString("MMM", CultureInfo.InvariantCulture);
             }
         }
 

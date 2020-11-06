@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Tsumugi.Service;
-using Tsumugi.Service.DummyData;
 using Tsumugi.Models.Dashboard;
 
 namespace Tsumugi.Controllers
@@ -13,6 +12,9 @@ namespace Tsumugi.Controllers
     {
         public ActionResult Index()
         {
+            #if DEBUG
+            TsumugiUser.UserID = Guid.Parse("503575e3-8210-465f-b141-6b70f21a3ada");
+            #endif
             return RedirectToAction("Dashboard");
         }
 
