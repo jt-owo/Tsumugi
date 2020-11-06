@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Tsumugi.Service;
 
 namespace Tsumugi.Models.Detail
@@ -12,11 +14,34 @@ namespace Tsumugi.Models.Detail
     {
         public Guid WalletID { get; set; }
         public List<TransactionListItem> TransactionList { get; set; } = new List<TransactionListItem>();
-        public TsumugiDataContext DC { get; set; }
+        public TsumugiDataContext DC { get; set; } = new TsumugiDataContext();
+
+        #region CHART DATA
 
         public decimal MonthlyEarnings { get; set; } = 0;
         public decimal MonthlySpendings { get; set; } = 0;
         public decimal Trend { get; set; } = 0;
+
+        #endregion
+
+        #region NEW / DELETE TRANSACTION
+
+        [DataType(DataType.Date), Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        public DateTime Date { get; set; }
+
+        public bool Type { get; set; } = false;
+        public string Title { get; set; }
+        public string Note { get; set; }
+        public string Value { get; set; }
+        public Guid? CategoryID { get; set; } = null;
+        public SelectList CategoryOptions { get; set; }
+
+        public Guid? DeleteTransactionID { get; set; }
+
+        #endregion
+
+        #region DISPLAY PROPERTIES
 
         public string WalletName
         {
@@ -59,6 +84,8 @@ namespace Tsumugi.Models.Detail
             }
         }
 
+        #endregion
+
         public Wallet Wallet
         {
             get
@@ -90,14 +117,6 @@ namespace Tsumugi.Models.Detail
             }
         }
 
-        public string Category
-        {
-            get
-            {
-                return "";
-            }
-        }
-
         public string ValueFormatted
         {
             get
@@ -114,12 +133,21 @@ namespace Tsumugi.Models.Detail
             }
         }
 
+        public string Category
+        {
+            get
+            {
+                TsumugiDataContext DC = new TsumugiDataContext();
+                return DC.Categories.Where(m => m.ID == CategoryID).Select(n => n.Name).FirstOrDefault();
+            }
+        }
+
         public TransactionListItem(Transaction t)
         {
             ID = t.ID;
             WalletID = t.WalletID;
             Title = t.Title;
-            Note = t.Note;
+            Note = t.Note ?? "-";
             Date = t.Date;
             Value = t.Value;
             Type = t.Type;

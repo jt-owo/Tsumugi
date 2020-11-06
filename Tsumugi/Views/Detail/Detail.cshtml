@@ -2,15 +2,16 @@
 @using Tsumugi.Service;
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m => m.DeleteTransactionID)
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <script>
-        var trendNumber;
+        var trendNumber = 0;
 
         $(function () {
             trendNumber = parseFloat("@(Model.Trend)");
 
-           createTrendChart();
-           createMonthChart();
+            createTrendChart();
+            createMonthChart();
 
             window.onclick = function (event) {
                 if (event.target == document.getElementById('detailModal')) {
@@ -28,21 +29,24 @@
                     labels: ['@(Model.CurrentMonthLabel)', '@(Model.NextMonthLabel)', '@(Model.AfterNextMonthLabel)'],
                     datasets: [{
                         label: 'Amount of Money',
-                        data: [0, trendNumber, trendNumber],
+                        data: [0, trendNumber, trendNumber + trendNumber],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(239, 208, 162, 0.2)',
+                            'rgba(239, 208, 162, 0.2)',
+                            'rgba(239, 208, 162, 0.2)',
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(54, 162, 235, 1)',
+                            'rgba(215, 187, 145, 1)',
+                            'rgba(215, 187, 145, 1)',
+                            'rgba(215, 187, 145, 1)',
                         ],
                         borderWidth: 1
                     }]
                 },
                 options: {
+                    legend: {
+                        display: false
+                    },
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -64,12 +68,12 @@
                         label: 'Amount of Money',
                         data: [@(Model.MonthlyEarnings), @(Model.MonthlySpendings)],
                         backgroundColor: [
-                            'rgba(0, 150, 0, 0.2)',
-                            'rgba(150, 0, 0, 0.2)',
+                            'rgba(67, 181, 129, 0.2)',
+                            'rgba(240, 71, 71, 0.2)',
                         ],
                         borderColor: [
-                            'rgba(0, 200, 0, 1)',
-                            'rgba(200, 0, 0, 1)',
+                            'rgba(60, 162, 116, 1)',
+                            'rgba(216, 63, 63, 1)',
                         ],
                         borderWidth: 1
                     }]
@@ -121,8 +125,19 @@
 
         deleteTransaction = (element) => {
             if (confirm("Do you really want to delete this transaction?")) {
-                alert($(element).data("id"));
+                $("#DeleteTransactionID").val($(element).data("id"));
+                document.forms[0].submit();
             }
+        }
+
+        // NEW TRANSACTION
+
+        openNewTransaction = () => {
+            $('#newTransModal').css({ "display": "block" });
+        }
+
+        closeNewTransModal = () => {
+            $('#newTransModal').css({ "display": "none" });
         }
 
     </script>
@@ -142,6 +157,7 @@
             <div class="trans-container">
                 @Html.DisplayFor(m => m.TransactionList)
             </div>
+            <div id="add-transaction" class="circle plus" onclick="openNewTransaction();"></div>
         </div>
     </div>
     if (Model.VibeCat)
@@ -181,6 +197,47 @@
                         <td colspan="2"><input id="delete-button" type="button" data-id="" onclick="deleteTransaction(this)" value="DELETE" /></td>
                     </tr>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    // NEW TRANSACTION MODAL
+    <div id="newTransModal" class="modal">
+        <div class="modal-content center">
+            <span class="close" onclick="closeNewTransModal();">&times;</span>
+            <h4>NEW TRANSACTION</h4>
+            <div id="wallet-modal-container">
+                <form action="/Detail/Detail" method="POST">
+                    <table>
+                        <tr>
+                            <td>Earning:</td>
+                            <td>@Html.CheckBoxFor(m => m.Type)</td>
+                        </tr>
+                        <tr>
+                            <td>Date:</td>
+                            <td>@Html.EditorFor(m => m.Date, new { htmlAttributes = new { required = true } })</td>
+                        </tr>
+                        <tr>
+                            <td>Title:</td>
+                            <td>@Html.EditorFor(m => m.Title, new { htmlAttributes = new { required = true } })</td>
+                        </tr>
+                        <tr>
+                            <td>Note:</td>
+                            <td>@Html.EditorFor(m => m.Note)</td>
+                        </tr>
+                        <tr>
+                            <td>Value:</td>
+                            <td>@Html.EditorFor(m => m.Value, new { htmlAttributes = new { required = true } })</td>
+                        </tr>
+                        <tr>
+                            <td>Category:</td>
+                            <td>@Html.DropDownListFor(m => m.CategoryID, Model.CategoryOptions)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" value="CREATE" /></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
     </div>

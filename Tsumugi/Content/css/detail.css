@@ -3,12 +3,16 @@
     --chart-w: 250px;
 }
 
+select, option {
+    color: #000 !important;
+}
+
 .plus {
-    color: green;
+    color: var(--green-color);
 }
 
 .minus {
-    color: red;
+    color: var(--red-color);
 }
 
 .detail-wrapper {
@@ -115,3 +119,21 @@
     bottom: 0;
     left: 0;
 }
+
+#add-transaction {
+    position: absolute;
+    bottom: 55px;
+    right: 375px;
+}
+
+    #add-transaction.circle {
+        height: 45px;
+        width: 45px;
+        background-color: var(--green-color);
+        border-color: #3ca274;
+    }
+
+        #add-transaction.circle:hover {
+            background: none;
+            background-color: #2e7e5a;
+        }
