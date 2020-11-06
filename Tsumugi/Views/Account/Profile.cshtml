@@ -12,17 +12,58 @@
         bottom: 0;
         margin: auto;
         overflow: auto;
-        -webkit-box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
-        -moz-box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
-        box-shadow: 9px 8px 6px -1px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+        border-radius: 8px;
         color: #FFF;
+        text-align: center;
     }
+
+        #profile-box table {
+            margin: 0 auto;
+        }
 </style>
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m => m.User.ID)
+    if (!string.IsNullOrEmpty(Model.ErrorMSG))
+    {
+        <div class="alert error">
+            <span class="closeBtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Saving failed:</strong> @(Model.ErrorMSG)
+        </div>
+    }
+    else if (Model.Success)
+    {
+        <div class="alert success">
+            <span class="closeBtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Success:</strong> All changes have been saved!
+        </div>
+    }
     <div class="container">
         <div id="profile-box">
-           
+            <h3>@(Model.User.FirstName) @(Model.User.LastName)</h3>
+            <table>
+                <tr>
+                    <td>First name:</td>
+                    <td>@Html.EditorFor(m => m.User.FirstName)</td>
+                </tr>
+                <tr>
+                    <td>Last name:</td>
+                    <td>@Html.EditorFor(m => m.User.LastName)</td>
+                </tr>
+                <tr>
+                    <td>E-Mail:</td>
+                    <td>@Html.EditorFor(m => m.User.EMail)</td>
+                </tr>
+            </table>
+            <h3>Change Password</h3>
+            <div>New Password:</div>
+            @Html.EditorFor(m => m.NewPassword, new { htmlAttributes = new { pattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$" } })
+            <div>Repeat Password:</div>
+            @Html.EditorFor(m => m.RepeatPassword)<br />
+            <input type="submit" value="SAVE CHANGES" />
         </div>
     </div>
 }

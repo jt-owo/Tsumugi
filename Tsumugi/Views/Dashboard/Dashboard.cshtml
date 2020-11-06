@@ -47,14 +47,14 @@
         $('#walletModal').css({ "display": "block" });
     }
 
-    closeNewWalletModal = () => {
+    closeNewWalletModal = () => {    /* RENAME WALLET */
+        zz
+        openRenameWallet = () => {
+            if (walletID == null) { return; }
+
         $('#walletModal').css({ "display": "none" });
     }
 
-    /* RENAME WALLET */
-
-    openRenameWallet = () => {
-        if (walletID == null) { return; }
         $('#renameWalletModal').css({ "display": "block" });
         menu.classList.remove('show');
     }

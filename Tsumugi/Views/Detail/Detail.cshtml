@@ -7,7 +7,7 @@
         var trendNumber;
 
         $(function () {
-            trendNumber = parseFloat("@(Model.Trend)".replace(',', '.'));
+            trendNumber = parseFloat("@(Model.Trend)");
 
            createTrendChart();
            createMonthChart();
@@ -21,7 +21,6 @@
         });
 
         function createTrendChart() {
-            alert(trendNumber);
             var ctx = document.getElementById('trendChart').getContext('2d');
             var trendChart = new Chart(ctx, {
                 type: 'line',
@@ -107,16 +106,23 @@
 
         fillDetails = (transaction) => {
             if (transaction != null && transaction != undefined) {
+                $("#delete-button").data("id", transaction.ID);
                 $("#detail-date").html(transaction.DateFormatted);
                 $("#detail-title").html(transaction.Title);
                 $("#detail-note").html(transaction.Note);
                 $("#detail-value").html(transaction.ValueFormatted);
-                //$("#detail-category").html(transaction.CategoryFormatted);
+                $("#detail-category").html(transaction.CategoryFormatted);
 
                 return true;
             }
 
             return false;
+        }
+
+        deleteTransaction = (element) => {
+            if (confirm("Do you really want to delete this transaction?")) {
+                alert($(element).data("id"));
+            }
         }
 
     </script>
@@ -170,6 +176,9 @@
                     <tr>
                         <td>Category:</td>
                         <td><span id="detail-category">-</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input id="delete-button" type="button" data-id="" onclick="deleteTransaction(this)" value="DELETE" /></td>
                     </tr>
                 </table>
             </div>
