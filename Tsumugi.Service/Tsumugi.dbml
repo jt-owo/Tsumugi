@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Tsumugi" Class="TsumugiDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=IT-61\TSUMUGI;Initial Catalog=Tsumugi;Integrated Security=True" SettingsObjectName="Tsumugi.Service.Properties.Settings" SettingsPropertyName="TsumugiConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MUGIPC\TSUMUGI;Initial Catalog=Tsumugi;Integrated Security=True" SettingsObjectName="Tsumugi.Service.Properties.Settings" SettingsPropertyName="TsumugiConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Category" Member="Categories">
     <Type Name="Category">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -41,4 +41,12 @@
       <Association Name="User_Wallet" Member="Wallets" ThisKey="ID" OtherKey="UserID" Type="Wallet" />
     </Type>
   </Table>
+  <Function Name="dbo.DeleteUser" Method="DeleteUser">
+    <Parameter Name="UserID" Parameter="userID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteWallet" Method="DeleteWallet">
+    <Parameter Name="WalletID" Parameter="walletID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using Tsumugi.Models.Account;
 using Tsumugi.Service;
@@ -75,7 +71,7 @@ namespace Tsumugi.Controllers
             {
                 return RedirectToAction("Profile", new { errorMSG = "The passwords don't match!" });
             }
-            else
+            else if(!string.IsNullOrEmpty(m.NewPassword) && m.NewPassword == m.RepeatPassword)
             {
                 user.Password = Password.HashSHA256(m.NewPassword);
             }

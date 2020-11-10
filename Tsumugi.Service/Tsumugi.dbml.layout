@@ -26,21 +26,21 @@
         <elementListCompartment Id="90c29168-2283-4892-be83-722983ee53ce" absoluteBounds="0.64, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.875 : 1.94399251302083); (3.875 : 2.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.875 : 1.94399251302083); (3.875 : 2.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TsumugiDataContext/Category/Category_Transaction" />
       <nodes>
         <classShapeMoniker Id="ebd9d7bf-d5c3-46d2-a130-df6084b28096" />
         <classShapeMoniker Id="2cbebbdf-7040-4778-9deb-1fc38d703951" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.625 : 3.78929768880208); (2.875 : 3.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.625 : 3.78929768880208); (2.875 : 3.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TsumugiDataContext/Wallet/Wallet_Transaction" />
       <nodes>
         <classShapeMoniker Id="4a6d5704-1ada-47e0-b9d8-d1066b55a275" />
         <classShapeMoniker Id="2cbebbdf-7040-4778-9deb-1fc38d703951" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.625 : 2.52089680989583); (1.625 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.625 : 2.52089680989583); (1.625 : 3)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TsumugiDataContext/User/User_Wallet" />
       <nodes>
         <classShapeMoniker Id="90cd6445-2fc6-4d6e-b955-72c006ecebe2" />

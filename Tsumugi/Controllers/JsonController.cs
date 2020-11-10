@@ -28,8 +28,25 @@ namespace Tsumugi.Controllers
             Wallet wallet = DC.Wallets.Where(m => m.ID == walletID).FirstOrDefault();
             if(wallet != null)
             {
-                // EXECUTE DELETE STORED PROCEDURES
-                return Json(wallet.Name, JsonRequestBehavior.AllowGet);
+                if (Convert.ToBoolean(DC.DeleteWallet(walletID)))
+                { 
+                    return Json(wallet.Name, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteUser()
+        {
+            User user = DC.Users.Where(m => m.ID == TsumugiUser.UserID).FirstOrDefault();
+            if (user != null)
+            {
+                if (Convert.ToBoolean(DC.DeleteUser(TsumugiUser.UserID)))
+                {
+                    TsumugiUser.UserID = null;
+                    return RedirectToAction("Index", "Dashboard");
+                }
             }
 
             return Json(false, JsonRequestBehavior.AllowGet);

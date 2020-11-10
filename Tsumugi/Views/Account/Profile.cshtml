@@ -24,6 +24,11 @@
             margin: 0 auto;
         }
 </style>
+<script>
+    deleteUser = () => {
+        $.post("/Json/DeleteUser");
+    }
+</script>
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(m => m.User.ID)
@@ -63,7 +68,8 @@
             @Html.EditorFor(m => m.NewPassword, new { htmlAttributes = new { pattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$" } })
             <div>Repeat Password:</div>
             @Html.EditorFor(m => m.RepeatPassword)<br />
-            <input type="submit" value="SAVE CHANGES" />
+            <input type="submit" value="SAVE CHANGES" /><br/>
+            <input type="button" name="delete" value="DELETE USER" onclick="deleteUser();"/>
         </div>
     </div>
 }
