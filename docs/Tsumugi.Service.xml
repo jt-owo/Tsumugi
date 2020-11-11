@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tsumugi.Service</name>
+    </assembly>
+    <members>
+        <member name="M:Tsumugi.Service.Chart.CalcEarnings(System.Int32,System.Collections.Generic.List{Tsumugi.Service.Transaction})">
+            <summary>
+            Calculates the earnings of the last 30 months
+            </summary>
+            <param name="month">Current month</param>
+            <param name="transactions">List of Transactions</param>
+            <returns>Calculated value</returns>
+        </member>
+        <member name="M:Tsumugi.Service.Chart.CalcSpendings(System.Int32,System.Collections.Generic.List{Tsumugi.Service.Transaction})">
+            <summary>
+            Calculates the spendings of the last 30 months
+            </summary>
+            <param name="month">Current month</param>
+            <param name="transactions">List of Transactions</param>
+            <returns>Calculated value</returns>
+        </member>
+        <member name="M:Tsumugi.Service.Chart.CalcTrend(System.Int32,System.Collections.Generic.List{Tsumugi.Service.Transaction})">
+            <summary>
+            Calculates the trend
+            </summary>
+            <param name="currentMonth">Current month</param>
+            <param name="transactions">List of transactions</param>
+            <returns>Calculated value</returns>
+        </member>
+        <member name="M:Tsumugi.Service.Password.HashSHA256(System.String)">
+            <summary>
+            Hashes a password with the SHA256 algorithm.
+            </summary>
+            <param name="password">Password that should be hashed</param>
+            <returns>Hashed password</returns>
+        </member>
+        <member name="M:Tsumugi.Service.Password.Verify(System.String,System.String)">
+            <summary>
+            Compares a password and hash value.
+            </summary>
+            <param name="password">Password that should be compared.</param>
+            <param name="hash">Hashed password.</param>
+            <returns>True if both hash values are equal.</returns>
+        </member>
+        <member name="P:Tsumugi.Service.TsumugiUser.IsLoggedOn">
+            <summary>
+            Checks if a user is logged on
+            </summary>
+        </member>
+        <member name="P:Tsumugi.Service.TsumugiUser.UserID">
+            <summary>
+            Saves the userID in the session
+            </summary>
+        </member>
+    </members>
+</doc>

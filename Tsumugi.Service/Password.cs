@@ -35,7 +35,7 @@ namespace Tsumugi.Service
         /// </summary>
         /// <param name="password">Password that should be compared.</param>
         /// <param name="hash">Hashed password.</param>
-        /// <returns>If both hash values are equal.</returns>
+        /// <returns>True if both hash values are equal.</returns>
         public static bool Verify(string password, string hash)
         {
             return hash == HashSHA256(password);

@@ -8,6 +8,14 @@ namespace Tsumugi.Controllers
 {
     public class AccountController : BaseController
     {
+        /// <summary>
+        /// Creates a new user
+        /// </summary>
+        /// <param name="email">E-Mail</param>
+        /// <param name="pw">Password</param>
+        /// <param name="firstName">First name</param>
+        /// <param name="lastName">Last name</param>
+        /// <returns>Redirect to Login method</returns>
         public ActionResult Register(string email, string pw, string firstName, string lastName)
         {
             User user = new User
@@ -25,6 +33,12 @@ namespace Tsumugi.Controllers
             return RedirectToAction("Login", new { email, pw });
         }
 
+        /// <summary>
+        /// Login an existing user
+        /// </summary>
+        /// <param name="email">E-Mail</param>
+        /// <param name="pw">Password</param>
+        /// <returns>Redirect to Dashboard View</returns>
         public ActionResult Login(string email, string pw)
         {
             User user = DC.Users.Where(m => m.EMail == email).FirstOrDefault();
@@ -44,12 +58,22 @@ namespace Tsumugi.Controllers
             }
         }
 
+        /// <summary>
+        /// Logout user
+        /// </summary>
+        /// <returns>Redirect to Dashboard View</returns>
         public ActionResult Logout()
         {
             TsumugiUser.UserID = null;
             return RedirectToAction("Dashboard", "Dashboard");
         }
 
+        /// <summary>
+        /// Opens the profile page
+        /// </summary>
+        /// <param name="errorMSG">Error Message if something went wrong</param>
+        /// <param name="success">True if password changing or user data changing was successful</param>
+        /// <returns>Profile View</returns>
         public ActionResult Profile(string errorMSG, bool success = false)
         {
             AccountModel m = new AccountModel()
@@ -63,6 +87,11 @@ namespace Tsumugi.Controllers
             return View(m);
         }
 
+        /// <summary>
+        /// Profile page POST method
+        /// </summary>
+        /// <param name="m">AccountModel</param>
+        /// <returns>Redirect to Profile GET</returns>
         [HttpPost]
         public ActionResult Profile(AccountModel m)
         {

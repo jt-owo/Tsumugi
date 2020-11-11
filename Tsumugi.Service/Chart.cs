@@ -10,6 +10,12 @@ namespace Tsumugi.Service
     {
         public static TsumugiDataContext DC { get; set; } = new TsumugiDataContext();
 
+        /// <summary>
+        /// Calculates the earnings of the last 30 months
+        /// </summary>
+        /// <param name="month">Current month</param>
+        /// <param name="transactions">List of Transactions</param>
+        /// <returns>Calculated value</returns>
         public static decimal CalcEarnings(int month, List<Transaction> transactions)
         {
             DateTime firstDayOfMonth = new DateTime(DateTime.Now.Year, month, 1);
@@ -27,6 +33,12 @@ namespace Tsumugi.Service
             return ret;
         }
 
+        /// <summary>
+        /// Calculates the spendings of the last 30 months
+        /// </summary>
+        /// <param name="month">Current month</param>
+        /// <param name="transactions">List of Transactions</param>
+        /// <returns>Calculated value</returns>
         public static decimal CalcSpendings(int month, List<Transaction> transactions)
         {
             DateTime firstDayOfMonth = new DateTime(DateTime.Now.Year, month, 1);
@@ -44,6 +56,12 @@ namespace Tsumugi.Service
             return ret;
         }
 
+        /// <summary>
+        /// Calculates the trend
+        /// </summary>
+        /// <param name="currentMonth">Current month</param>
+        /// <param name="transactions">List of transactions</param>
+        /// <returns>Calculated value</returns>
         public static decimal CalcTrend(int currentMonth, List<Transaction> transactions)
         {
             DateTime firstDay = new DateTime(DateTime.Now.Year, currentMonth-2, 1);

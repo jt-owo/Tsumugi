@@ -10,11 +10,20 @@ namespace Tsumugi.Controllers
 {
     public class DetailController : BaseController
     {
+        /// <summary>
+        /// Index method
+        /// </summary>
+        /// <returns>Redirect to Detail View</returns>
         public ActionResult Index()
         {
-            return RedirectToAction("Details");
+            return RedirectToAction("Detail");
         }
 
+        /// <summary>
+        /// Opens the detail page for a wallet
+        /// </summary>
+        /// <param name="walletID">WalletID</param>
+        /// <returns>Detail View</returns>
         public ActionResult Detail(Guid walletID)
         {
             if (!TsumugiUser.IsLoggedOn) return RedirectToAction("Dashboard", "Dashboard");
@@ -39,6 +48,11 @@ namespace Tsumugi.Controllers
             return View(m);
         }
 
+        /// <summary>
+        /// Detail page POST
+        /// </summary>
+        /// <param name="m">DetailModel</param>
+        /// <returns>Redirect to Detail GET</returns>
         [HttpPost]
         public ActionResult Detail(DetailModel m)
         {

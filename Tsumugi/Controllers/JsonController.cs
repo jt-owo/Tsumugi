@@ -10,6 +10,12 @@ namespace Tsumugi.Controllers
 {
     public class JsonController : BaseController
     {
+        /// <summary>
+        /// Renames a wallet
+        /// </summary>
+        /// <param name="walletID">WalletID</param>
+        /// <param name="newName">New name of the wallet</param>
+        /// <returns>JSON Object</returns>
         public ActionResult RenameWallet(Guid walletID, string newName)
         {
             Wallet wallet = DC.Wallets.Where(m => m.ID == walletID).FirstOrDefault();
@@ -23,6 +29,11 @@ namespace Tsumugi.Controllers
             return Json(false, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Deletes a wallet
+        /// </summary>
+        /// <param name="walletID">WalletID</param>
+        /// <returns>JSON Object</returns>
         public ActionResult DeleteWallet(Guid walletID)
         {
             Wallet wallet = DC.Wallets.Where(m => m.ID == walletID).FirstOrDefault();
@@ -37,6 +48,10 @@ namespace Tsumugi.Controllers
             return Json(false, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Deletes a user
+        /// </summary>
+        /// <returns>JSON Object or redirect to Dashboard page</returns>
         public ActionResult DeleteUser()
         {
             User user = DC.Users.Where(m => m.ID == TsumugiUser.UserID).FirstOrDefault();
@@ -52,6 +67,11 @@ namespace Tsumugi.Controllers
             return Json(false, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Get transaction detail
+        /// </summary>
+        /// <param name="transactionID">TransactionID</param>
+        /// <returns>JSON Object</returns>
         public ActionResult GetTransaction(Guid transactionID)
         {
             Transaction transaction = DC.Transactions.Where(m => m.ID == transactionID).FirstOrDefault();

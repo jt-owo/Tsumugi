@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tsumugi</name>
+    </assembly>
+    <members>
+        <member name="M:Tsumugi.Controllers.AccountController.Register(System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a new user
+            </summary>
+            <param name="email">E-Mail</param>
+            <param name="pw">Password</param>
+            <param name="firstName">First name</param>
+            <param name="lastName">Last name</param>
+            <returns>Redirect to Login method</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.AccountController.Login(System.String,System.String)">
+            <summary>
+            Login an existing user
+            </summary>
+            <param name="email">E-Mail</param>
+            <param name="pw">Password</param>
+            <returns>Redirect to Dashboard View</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.AccountController.Logout">
+            <summary>
+            Logout user
+            </summary>
+            <returns>Redirect to Dashboard View</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.AccountController.Profile(System.String,System.Boolean)">
+            <summary>
+            Opens the profile page
+            </summary>
+            <param name="errorMSG">Error Message if something went wrong</param>
+            <param name="success">True if password changing or user data changing was successful</param>
+            <returns>Profile View</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.AccountController.Profile(Tsumugi.Models.Account.AccountModel)">
+            <summary>
+            Profile page POST method
+            </summary>
+            <param name="m">AccountModel</param>
+            <returns>Redirect to Profile GET</returns>
+        </member>
+        <member name="P:Tsumugi.Controllers.BaseController.DC">
+            <summary>
+            DataContext for database access
+            </summary>
+        </member>
+        <member name="M:Tsumugi.Controllers.DetailController.Index">
+            <summary>
+            Index method
+            </summary>
+            <returns>Redirect to Detail View</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.DetailController.Detail(System.Guid)">
+            <summary>
+            Opens the detail page for a wallet
+            </summary>
+            <param name="walletID">WalletID</param>
+            <returns>Detail View</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.DetailController.Detail(Tsumugi.Models.Detail.DetailModel)">
+            <summary>
+            Detail page POST
+            </summary>
+            <param name="m">DetailModel</param>
+            <returns>Redirect to Detail GET</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.DashboardController.Index">
+            <summary>
+            Index method
+            </summary>
+            <returns>Redirect to Dashboard View</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.DashboardController.Dashboard(System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Opens the dashboard page
+            </summary>
+            <param name="loginFailed">True if login failed</param>
+            <param name="errorMSG">Error message if something went wrong</param>
+            <returns>Dashboard View</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.DashboardController.Dashboard(Tsumugi.Models.Dashboard.DashboardModel)">
+            <summary>
+            Dashboard page POST method
+            </summary>
+            <param name="m">DashboardModel</param>
+            <returns>Redirect to Dashboard GET</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.JsonController.RenameWallet(System.Guid,System.String)">
+            <summary>
+            Renames a wallet
+            </summary>
+            <param name="walletID">WalletID</param>
+            <param name="newName">New name of the wallet</param>
+            <returns>JSON Object</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.JsonController.DeleteWallet(System.Guid)">
+            <summary>
+            Deletes a wallet
+            </summary>
+            <param name="walletID">WalletID</param>
+            <returns>JSON Object</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.JsonController.DeleteUser">
+            <summary>
+            Deletes a user
+            </summary>
+            <returns>JSON Object or redirect to Dashboard page</returns>
+        </member>
+        <member name="M:Tsumugi.Controllers.JsonController.GetTransaction(System.Guid)">
+            <summary>
+            Get transaction detail
+            </summary>
+            <param name="transactionID">TransactionID</param>
+            <returns>JSON Object</returns>
+        </member>
+    </members>
+</doc>

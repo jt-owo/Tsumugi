@@ -9,6 +9,9 @@ namespace Tsumugi.Service
 {
     public static class TsumugiUser
     {
+        /// <summary>
+        /// Checks if a user is logged on
+        /// </summary>
         public static bool IsLoggedOn
         {
             get
@@ -17,6 +20,9 @@ namespace Tsumugi.Service
             }
         }
 
+        /// <summary>
+        /// Saves the userID in the session
+        /// </summary>
         public static Guid? UserID
         {
             get => HttpContext.Current.Application["UserID"] as Guid?;

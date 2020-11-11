@@ -10,11 +10,21 @@ namespace Tsumugi.Controllers
 {
     public class DashboardController : BaseController
     {
+        /// <summary>
+        /// Index method
+        /// </summary>
+        /// <returns>Redirect to Dashboard View</returns>
         public ActionResult Index()
         {
             return RedirectToAction("Dashboard");
         }
 
+        /// <summary>
+        /// Opens the dashboard page
+        /// </summary>
+        /// <param name="loginFailed">True if login failed</param>
+        /// <param name="errorMSG">Error message if something went wrong</param>
+        /// <returns>Dashboard View</returns>
         public ActionResult Dashboard(bool? loginFailed, string errorMSG)
         {
             DashboardModel m = new DashboardModel();
@@ -28,6 +38,11 @@ namespace Tsumugi.Controllers
             return View(m);
         }
 
+        /// <summary>
+        /// Dashboard page POST method
+        /// </summary>
+        /// <param name="m">DashboardModel</param>
+        /// <returns>Redirect to Dashboard GET</returns>
         [HttpPost]
         public ActionResult Dashboard(DashboardModel m)
         {

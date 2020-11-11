@@ -9,6 +9,9 @@ namespace Tsumugi.Controllers
 {
     public class BaseController : Controller
     {
+        /// <summary>
+        /// DataContext for database access
+        /// </summary>
         public TsumugiDataContext DC { get; set; } = new TsumugiDataContext();
     }
 }
