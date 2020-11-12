@@ -137,3 +137,76 @@ select, option {
             background: none;
             background-color: #2e7e5a;
         }
+
+.transaction-label {
+    padding-left: 10px;
+    padding-top: 10px;
+    text-align: left;
+}
+
+.detail-label {
+    padding-left: 25px;
+    padding-top: 10px;
+    text-align: left;
+}
+
+.delete-button-transaction {
+    float: right;
+    font-size: 18px;
+    padding: 12px;
+    width: 150px;
+    background-color: var(--red-color);
+    border: none;
+    margin-right: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.create-button-transaction {
+    float: right;
+    font-size: 18px;
+    padding: 12px;
+    width: 150px;
+    background-color: var(--green-color);
+    border: none;
+    margin-right: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+    .delete-button-transaction:hover, .create-button-transaction {
+        color: var(--font-color) !important;
+    }
+
+.h4-transaction {
+    margin-bottom: 25px;
+}
+
+.new-transaction-label {
+    display: block;
+    padding-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: right;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+
+input[type=date], input[type=checkbox] {
+    width: 100%;
+    padding: 15px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    font-size: 18px;
+}
+
+select {
+    width: 100%;
+    padding: 15px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    font-size: 18px;
+}
+

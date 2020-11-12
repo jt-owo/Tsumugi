@@ -168,75 +168,71 @@
     }
     // DETAIL MODAL
     <div id="detailModal" class="modal">
-        <div class="modal-content center">
+        <div class="modal-content-transaction center">
             <span class="close" onclick="closeDetailModal();">&times;</span>
-            <h4>TRANSACTION DETAIL</h4>
+            <h4 class="h4-transaction">TRANSACTION DETAIL</h4>
             <div id="wallet-modal-container">
                 <table>
                     <tr>
-                        <td>Date:</td>
-                        <td><span id="detail-date">-</span></td>
+                        <td class="transaction-label">Date:</td>
+                        <td class="detail-label"><span id="detail-date">-</span></td>
                     </tr>
                     <tr>
-                        <td>Title:</td>
-                        <td><span id="detail-title">-</span></td>
+                        <td class="transaction-label">Title:</td>
+                        <td class="detail-label"><span id="detail-title">-</span></td>
                     </tr>
                     <tr>
-                        <td>Note:</td>
-                        <td><span id="detail-note">-</span></td>
+                        <td class="transaction-label">Note:</td>
+                        <td class="detail-label"><span id="detail-note">-</span></td>
                     </tr>
                     <tr>
-                        <td>Value:</td>
-                        <td><span id="detail-value">-</span></td>
+                        <td class="transaction-label">Value:</td>
+                        <td class="detail-label"><span id="detail-value">-</span></td>
                     </tr>
                     <tr>
-                        <td>Category:</td>
-                        <td><span id="detail-category">-</span></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input id="delete-button" type="button" data-id="" onclick="deleteTransaction(this)" value="DELETE" /></td>
+                        <td class="transaction-label">Category:</td>
+                        <td class="detail-label"><span id="detail-category">-</span></td>
                     </tr>
                 </table>
+                <input id="delete-button" class="delete-button-transaction" type="button" data-id="" onclick="deleteTransaction(this)" value="DELETE" />
             </div>
         </div>
     </div>
 
     // NEW TRANSACTION MODAL
     <div id="newTransModal" class="modal">
-        <div class="modal-content center">
+        <div class="modal-content-new-transaction center">
             <span class="close" onclick="closeNewTransModal();">&times;</span>
             <h4>NEW TRANSACTION</h4>
             <div id="wallet-modal-container">
                 <form action="/Detail/Detail" method="POST">
                     <table>
                         <tr>
-                            <td>Earning:</td>
+                            <td class="new-transaction-label">Earning:</td>
                             <td>@Html.CheckBoxFor(m => m.Type)</td>
                         </tr>
                         <tr>
-                            <td>Date:</td>
+                            <td class="new-transaction-label">Date:</td>
                             <td>@Html.EditorFor(m => m.Date, new { htmlAttributes = new { required = true } })</td>
                         </tr>
                         <tr>
-                            <td>Title:</td>
+                            <td class="new-transaction-label">Title:</td>
                             <td>@Html.EditorFor(m => m.Title, new { htmlAttributes = new { required = true } })</td>
                         </tr>
                         <tr>
-                            <td>Note:</td>
+                            <td class="new-transaction-label">Note:</td>
                             <td>@Html.EditorFor(m => m.Note)</td>
                         </tr>
                         <tr>
-                            <td>Value:</td>
+                            <td class="new-transaction-label">Value:</td>
                             <td>@Html.EditorFor(m => m.Value, new { htmlAttributes = new { required = true } })</td>
                         </tr>
                         <tr>
-                            <td>Category:</td>
+                            <td class="new-transaction-label">Category:</td>
                             <td>@Html.DropDownListFor(m => m.CategoryID, Model.CategoryOptions)</td>
                         </tr>
-                        <tr>
-                            <td colspan="2"><input type="submit" value="CREATE" /></td>
-                        </tr>
                     </table>
+                    <input type="submit" class="create-button-transaction" value="CREATE" />
                 </form>
             </div>
         </div>

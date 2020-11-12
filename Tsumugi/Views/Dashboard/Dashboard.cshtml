@@ -134,9 +134,9 @@
                 <h4>ADD NEW WALLET</h4>
                 <div id="wallet-modal-container">
                     <form action="/Dashboard/Dashboard" method="post">
-                        <label>Name:</label>
+                        <label class="form-label">Name:</label>
                         @Html.EditorFor(m => m.NewWalletName, new { htmlAttributes = new { required = true } })
-                        <input type="submit" value="CREATE" />
+                        <input type="submit" class="submit-button" value="CREATE" />
                     </form>
                 </div>
             </div>
@@ -149,9 +149,9 @@
                 <h4>RENAME WALLET</h4>
                 <div id="wallet-modal-container">
                     <form action="/Dashboard/Dashboard" method="post">
-                        <label>Name:</label>
+                        <label class="form-label">Name:</label>
                         @Html.EditorFor(m => m.RenameWalletName, new { htmlAttributes = new { required = true } })
-                        <input type="submit" value="SAVE" onclick="renameWallet();" />
+                        <input type="submit" class="submit-button" value="SAVE" onclick="renameWallet();" />
                     </form>
                 </div>
             </div>
@@ -164,9 +164,9 @@
                 <h4>DELETE WALLET</h4>
                 <div id="wallet-modal-container">
                     <form action="/Dashboard/Dashboard" method="post">
-                        <p>Do you really want to delete this wallet?</p>
-                        <input type="submit" value="YES" onclick="deleteWallet();" />
-                        <input type="submit" value="NO" onclick="return;" />
+                        <p class="centered-label">Do you really want to delete this wallet?</p>
+                        <input type="submit" class="submit-button" value="YES" onclick="deleteWallet();" />
+                        <input type="submit" class="decline-button" value="NO" onclick="return;" />
                     </form>
                 </div>
             </div>
@@ -183,23 +183,23 @@
             <div id="Register" class="tabcontent">
                 <form action="/Dashboard/Dashboard" method="POST">
                     <h4>REGISTER</h4>
-                    <span>First name:</span>
+                    <span class="form-label">First name:</span>
                     <div>
                         @Html.EditorFor(m => m.RegisterFirstName, new { htmlAttributes = new { placeholder = "First name...", required = true } })
                     </div>
-                    <span>Last name:</span>
+                    <span class="form-label">Last name:</span>
                     <div>
                         @Html.EditorFor(m => m.RegisterLastName, new { htmlAttributes = new { placeholder = "Last name...", required = true } })
                     </div>
-                    <span>E-Mail:</span>
+                    <span class="form-label">E-Mail:</span>
                     <div>
                         @Html.EditorFor(m => m.RegisterEMail, new { htmlAttributes = new { placeholder = "E-Mail...", required = true } })
                     </div>
-                    <span>Password:</span>
+                    <span class="form-label">Password:</span>
                     <div>
                         @Html.PasswordFor(m => m.RegisterPassword, new { placeholder = "Password...", required = true, pattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$" })
                     </div>
-                    <span>Confirm password:</span>
+                    <span class="form-label">Confirm password:</span>
                     <div>
                         @Html.PasswordFor(m => m.RegisterConfirmPassword, new { placeholder = "Confirm password...", required = true })
                     </div>
@@ -210,11 +210,11 @@
             <div id="Login" class="tabcontent">
                 <form action="/Dashboard/Dashboard" method="POST">
                     <h4>LOGIN</h4>
-                    <span>E-Mail:</span>
+                    <span class="form-label">E-Mail:</span>
                     <div>
                         @Html.EditorFor(m => m.EMail, new { htmlAttributes = new { placeholder = "EMail...", required = true } })
                     </div>
-                    <span>Password:</span>
+                    <span class="form-label">Password:</span>
                     <div>
                         @Html.PasswordFor(m => m.Password, new { placeholder = "Password...", required = true })
                     </div>

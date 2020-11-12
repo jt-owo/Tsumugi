@@ -1,10 +1,56 @@
 ﻿h4 {
-    margin: 5px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+h3 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.submit-button {
+    float: right;
+    font-size: 18px;
+    padding: 12px;
+    width: 150px;
+    background-color: var(--green-color);
+    border: none;
+    margin-right: 20px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.decline-button {
+    float: right;
+    font-size: 18px;
+    padding: 12px;
+    width: 150px;
+    background-color: var(--red-color);
+    border: none;
+    margin-right: 20px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+    .submit-button:hover, .decline-button:hover {
+        color: var(--font-color) !important;
+    }
+
+.centered-label {
+    display: block;
+    padding-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-left: 5px;
 }
 
 #login-box {
     width: 25%;
-    height: 360px;
+    height: 480px;
     background-color: var(--second-color);
     position: absolute;
     left: 0;
@@ -12,7 +58,7 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    overflow: auto;
+    overflow: hidden;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
@@ -24,9 +70,39 @@
         color: #FFF;
     }
 
-.login-button {
-    width: 50%;
-}
+    .form-label {
+        display: block;
+        padding-left: 5px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        text-align: left;
+        margin-left: 5px;
+    }
+
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+        font-size: 18px;
+    }
+
+    .login-button {
+        float: right;
+        font-size: 18px;
+        padding: 12px;
+        width: 150px;
+        background-color: var(--green-color);
+        border: none;
+        margin-right: 20px;
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+        .login-button:hover {
+            color: var(--font-color) !important;
+        }
 
 .tab {
     overflow: hidden;
@@ -55,14 +131,23 @@
 .tabcontent {
     text-align: center;
     display: none;
-    padding: 6px 12px;
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
 }
 
+    .tabcontent::-webkit-scrollbar {
+        width: .85rem;
+    }
+
+    .tabcontent::-webkit-scrollbar-track {
+        background: var(--second-color);
+    }
+
+    .tabcontent::-webkit-scrollbar-thumb {
+        background: var(--third-color);
+    }
+
 #Login {
-    width: 200px;
-    height: 180px;
     position: absolute;
     left: 0;
     right: 0;
@@ -72,6 +157,17 @@
     max-width: 100%;
     max-height: 100%;
     overflow: auto;
+    margin-top: 48px;
+}
+
+#Register {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    margin-top: 48px;
 }
 
 @-webkit-keyframes fadeEffect {
@@ -148,7 +244,26 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #FFF;
-    width: 350px;
+    width: 400px;
+    height: 320px;
+}
+
+.modal-content-transaction {
+    background-color: var(--second-color);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #FFF;
+    width: 400px;
+    height: 400px;
+}
+
+.modal-content-new-transaction {
+    background-color: var(--second-color);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #FFF;
+    width: 400px;
+    height: 600px;
 }
 
 #wallet-modal-container {
