@@ -79,7 +79,12 @@
 </style>
 <script>
     deleteUser = () => {
-        $.post("/Json/DeleteUser");
+        if (confirm("Do you really want to delete this user?")) {
+            $.post("/Json/DeleteUser/")
+                .done(function (data) {
+                    document.forms[0].submit();
+                });
+        }
     }
 </script>
 @using (Html.BeginForm())
@@ -118,9 +123,9 @@
             </table>
             <h3>Change Password</h3>
             <div class="form-label">New Password:</div>
-            @Html.EditorFor(m => m.NewPassword, new { htmlAttributes = new { pattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$" } })
+            @Html.PasswordFor(m => m.NewPassword, new { pattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$" })
             <div class="form-label">Repeat Password:</div>
-            @Html.EditorFor(m => m.RepeatPassword)<br />
+            @Html.PasswordFor(m => m.RepeatPassword)<br />
             <div class="buttons">
                 <input type="submit" class="profile-save-button" value="SAVE CHANGES" /><br />
                 <input type="button" class="profile-delete-button" name="delete" value="DELETE USER" onclick="deleteUser();" />

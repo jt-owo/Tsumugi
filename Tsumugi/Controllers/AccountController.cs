@@ -76,12 +76,12 @@ namespace Tsumugi.Controllers
         /// <returns>Profile View</returns>
         public ActionResult Profile(string errorMSG, bool success = false)
         {
+            if (!TsumugiUser.IsLoggedOn) return RedirectToAction("Dashboard", "Dashboard");
             AccountModel m = new AccountModel()
             {
                 ErrorMSG = errorMSG,
                 Success = success
             };
-            if (!TsumugiUser.IsLoggedOn) return View(m);
 
             m.User = DC.Users.Where(a => a.ID == TsumugiUser.UserID).FirstOrDefault();
             return View(m);
@@ -96,6 +96,10 @@ namespace Tsumugi.Controllers
         public ActionResult Profile(AccountModel m)
         {
             User user = DC.Users.Where(a => a.ID == m.User.ID).FirstOrDefault();
+            if(user == null)
+            {
+                return RedirectToAction("Dashboard", "Dashboard");
+            }
             if (!string.IsNullOrEmpty(m.NewPassword) && m.NewPassword != m.RepeatPassword)
             {
                 return RedirectToAction("Profile", new { errorMSG = "The passwords don't match!" });

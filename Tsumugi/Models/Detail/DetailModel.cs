@@ -133,7 +133,7 @@ namespace Tsumugi.Models.Detail
             }
         }
 
-        public string Category
+        public string CategoryFormatted
         {
             get
             {

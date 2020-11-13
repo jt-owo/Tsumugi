@@ -225,7 +225,7 @@
                         </tr>
                         <tr>
                             <td class="new-transaction-label">Value:</td>
-                            <td>@Html.EditorFor(m => m.Value, new { htmlAttributes = new { required = true } })</td>
+                            <td>@Html.EditorFor(m => m.Value, new { htmlAttributes = new { required = true, type = "number" } })</td>
                         </tr>
                         <tr>
                             <td class="new-transaction-label">Category:</td>
