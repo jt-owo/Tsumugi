@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 
 import Navigation from './Navigation/Navigation';
 
@@ -11,13 +11,13 @@ import './Application.css';
 const Application: FC = () => {
 	return (
 		<div className="app-container">
-			<BrowserRouter>
+			<HashRouter>
 				<Navigation />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/about" element={<About />} />
 				</Routes>
-			</BrowserRouter>
+			</HashRouter>
 		</div>
 	);
 }
