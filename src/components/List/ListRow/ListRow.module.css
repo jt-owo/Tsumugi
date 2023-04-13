@@ -1,0 +1,18 @@
+.list-row {
+	display: flex;
+	flex-flow: row nowrap;
+	width: 100%;
+	border-bottom: 1px solid var(--dark-gray-3);
+}
+
+.list-row:last-child {
+	border-bottom: 0;
+}
+
+.list-row.heading {
+	background-color: var(--dark-gray-2);
+	font-weight: bold;
+
+	user-select: none;
+	-moz-user-select: none;
+}

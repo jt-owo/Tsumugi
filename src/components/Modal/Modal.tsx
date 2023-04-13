@@ -8,7 +8,7 @@ export interface ModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 	isFading?: boolean;
-    className?: string;
+	className?: string;
 	children?: JSX.Element | JSX.Element[];
 }
 

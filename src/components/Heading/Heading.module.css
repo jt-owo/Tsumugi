@@ -1,0 +1,17 @@
+.heading {
+	font-size: 35px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+
+	user-select: none;
+	-moz-user-select: none;
+}
+
+.heading.level-1 {
+	font-size: 23px;
+	font-weight: bold;
+}
+
+.heading.center {
+	text-align: center;
+}

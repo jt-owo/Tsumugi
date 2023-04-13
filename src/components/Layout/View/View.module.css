@@ -1,12 +1,11 @@
 .content-container {
-	display: block;
+	display: flex;
 	flex-grow: 0;
 	flex-shrink: 1;
+    flex-direction: column;
 	flex-basis: 100%;
-	align-self: auto;
-	order: 0;
 
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
 }

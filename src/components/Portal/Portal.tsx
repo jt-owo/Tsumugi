@@ -1,12 +1,12 @@
 import { FC, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-function createWrapper(wrapperID: string): HTMLDivElement {
+const createWrapper = (wrapperID: string): HTMLDivElement => {
 	const wrapperEl = document.createElement('div');
 	wrapperEl.setAttribute('id', wrapperID);
 	document.body.appendChild(wrapperEl);
 	return wrapperEl;
-}
+};
 
 interface PortalProps {
 	wrapperID: string;

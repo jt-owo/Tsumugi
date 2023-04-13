@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IWallet } from '../../types/types';
+import { IWallet } from '../../../types/types';
+
+import Number from '../../../components/Number/Number';
 
 import styles from './Wallet.module.css';
 
@@ -15,28 +17,27 @@ const Wallet: FC<WalletProps> = (props) => {
 
 	const navigate = useNavigate();
 
-        useEffect(() => {
-			if (wallet.transactions && wallet.transactions.length > 0) {
-				let sum = 0;
-				wallet.transactions.forEach((t) => {
-					sum += t.value;
-				});
+	const handleOnClick = () => navigate(`/detail/${props.wallet.id}`);
 
-				setQuickSum(sum);
-			}
-		}, [wallet.transactions]);
+	useEffect(() => {
+		if (wallet.transactions && wallet.transactions.length > 0) {
+			let sum = 0;
+			wallet.transactions.forEach((t) => {
+				sum += t.value;
+			});
+
+			setQuickSum(sum);
+		}
+	}, [wallet.transactions]);
 
 	return (
 		<div className={styles['wallet-wrapper']}>
 			<div className={styles['quick-view']}>
-				<div className={styles['text']}>{quickSum}</div>
+				<div className={styles['text']}>
+					<Number value={quickSum} />
+				</div>
 			</div>
-			<div
-				className={styles['wallet']}
-				onClick={() => {
-					navigate(`/detail/${props.wallet.id}`);
-				}}
-			>
+			<div className={styles['wallet']} onClick={handleOnClick}>
 				<div className={styles['options']}></div>
 				<div className={styles['text']}>{wallet.name}</div>
 			</div>

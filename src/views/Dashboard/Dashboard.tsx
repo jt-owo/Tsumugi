@@ -2,9 +2,13 @@ import { FC, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { addWallet } from '../../state/slices/walletSlice';
 
-import View from '../../components/View/View';
-import Wallet from '../../components/Wallet/Wallet';
+import View from '../../components/Layout/View/View';
+import Container from '../../components/Layout/Container/Container';
+
+import Heading from '../../components/Heading/Heading';
 import Modal from '../../components/Modal/Modal';
+
+import Wallet from './Wallet/Wallet';
 
 import styles from './Dashboard.module.css';
 import modalStyle from '../../components/Modal/Modal.module.css';
@@ -18,7 +22,7 @@ const Dashboard: FC = () => {
 	const [walletName, setWalletName] = useState('');
 
 	const handleAddWallet = () => {
-        if (walletName === '') return;
+		if (walletName === '') return;
 
 		setOpen(false);
 		dispatch(addWallet(walletName));
@@ -27,15 +31,20 @@ const Dashboard: FC = () => {
 
 	return (
 		<View>
-			<div>
-				<h1>Wallets</h1>
+			<Container id="dashboardContainer">
+				<Heading>Wallets</Heading>
 				<div className={styles['wallet-grid']}>
 					{wallets && wallets.map((wallet) => <Wallet key={wallet.id} wallet={wallet} />)}
 					<div className={styles['wallet-template']}>
-						<div className={styles.circle + ' ' + styles.plus} onClick={() => { setOpen(true); } }></div>
+						<div
+							className={styles.circle + ' ' + styles.plus}
+							onClick={() => {
+								setOpen(true);
+							}}
+						></div>
 					</div>
 				</div>
-			</div>
+			</Container>
 			<Modal isOpen={isOpen} onClose={() => setOpen(false)}>
 				<span className={modalStyle['modal-heading']}>Wallet Name</span>
 				<input type="text" value={walletName} onChange={(e) => setWalletName(e.currentTarget.value)} />

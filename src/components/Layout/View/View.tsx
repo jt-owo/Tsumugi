@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, ReactNode } from 'react';
 
 import styles from './View.module.css';
 
 type ViewProps = {
-    children?: JSX.Element | JSX.Element[];
-}
+	children: ReactNode;
+};
 
 const View: FC<ViewProps> = (props) => {
 	const { children } = props;

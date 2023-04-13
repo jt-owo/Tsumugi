@@ -1,0 +1,27 @@
+.button {
+	height: 45px;
+	min-width: 45px;
+	max-width: 50%;
+	background-color: var(--dark-gray-2);
+	border: none;
+	border-radius: 12px;
+	margin-right: 15px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: all ease-in-out 0.05s;
+
+	user-select: none;
+	-moz-user-select: none;
+}
+
+.button:hover {
+	background-color: var(--dark-gray-3);
+}
+
+.button.danger {
+	background-color: var(--red-1);
+}
+
+.button.confirm {
+	background-color: var(--green-1);
+}

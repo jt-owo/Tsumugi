@@ -3,23 +3,30 @@ import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { updateWallet } from '../../state/slices/walletSlice';
+import { formatDate, newGuid, sum } from '../../util';
 
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartData } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartData, ChartOptions } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-import { ITransaction } from '../../types/types';
+import View from '../../components/Layout/View/View';
+import Container from '../../components/Layout/Container/Container';
+import Row from '../../components/Layout/Row/Row';
+import Column from '../../components/Layout/Column/Column';
 
-import View from '../../components/View/View';
+import Heading from '../../components/Heading/Heading';
+import Button from '../../components/Button/Button';
+import List from '../../components/List/List';
+import ListRow from '../../components/List/ListRow/ListRow';
+import ListColumn from '../../components/List/ListColumn/ListColumn';
+import Number from '../../components/Number/Number';
 import Modal from '../../components/Modal/Modal';
-
-import newGuid from '../../util/newGuid';
 
 import styles from './Detail.module.css';
 import modalStyle from '../../components/Modal/Modal.module.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export const options = {
+export const options: ChartOptions = {
 	responsive: true,
 	plugins: {
 		legend: {
@@ -78,19 +85,14 @@ const Detail: FC = () => {
 		});
 
 		dispatch(updateWallet(updateData));
+
+		// Reset dialog values.
+		setTitle('');
+		setDate(new Date().toISOString().substring(0, 10));
+		setNote('');
+		setValue(0);
+		setOpen(false);
 	};
-
-        const sum = (arr: ITransaction[]) => {
-			if (arr.length < 1) return 0;
-
-			let sum = 0;
-
-			arr.forEach((item: ITransaction) => {
-				sum += item.value;
-			});
-
-			return sum;
-		};
 
 	useEffect(() => {
 		const revenue = wallet.transactions.filter((t) => !t.value.toString().startsWith('-'));
@@ -100,8 +102,8 @@ const Detail: FC = () => {
 			labels: ['REVENUE', 'EXPENSES'],
 			datasets: [
 				{
-					label: 'Amount of Money',
-					data: [sum(revenue), sum(expenses)],
+					label: 'Amount',
+					data: [sum(revenue), sum(expenses) * -1],
 					backgroundColor: ['rgba(67, 181, 129, 0.2)', 'rgba(240, 71, 71, 0.2)'],
 					borderColor: ['rgba(60, 162, 116, 1)', 'rgba(216, 63, 63, 1)'],
 					borderWidth: 1
@@ -112,43 +114,52 @@ const Detail: FC = () => {
 
 	return (
 		<View>
-			<div id={styles['detail-container']}>
-				<div id={styles['data-container']}>
-					<h1>{wallet.name}</h1>
-					<table id={styles['transaction-table']}>
-						<thead>
-							<tr>
-								<th>Date</th>
-								<th>Title</th>
-								<th>Note</th>
-								<th>Amount</th>
-							</tr>
-						</thead>
-						<tbody>
-							{wallet.transactions.map((t) => {
-								return (
-									<tr key={t.id}>
-										<td>{t.date}</td>
-										<td>{t.title}</td>
-										<td>{t.note}</td>
-										<td>{t.value}</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-					<div className={styles['chart-container']}>
-						<div id={styles["trend"]}></div>
-						<div id={styles["months"]}>
-							<h3>THIS MONTH</h3>
-							<Bar options={options} data={barData} width={400} height={400} />
-						</div>
-					</div>
-				</div>
-				<div id={styles['button-container']}>
-					<button onClick={() => setOpen(true)}>Add Transaction</button>
-				</div>
-			</div>
+			<Container id="transactionContainer">
+				<Row>
+					<Column>
+						<Heading>{wallet.name}</Heading>
+					</Column>
+				</Row>
+				{wallet.transactions.length > 0 ? (
+					<Row>
+						<Column>
+							<List>
+								<ListRow heading>
+									<ListColumn>Date</ListColumn>
+									<ListColumn>Title</ListColumn>
+									<ListColumn>Note</ListColumn>
+									<ListColumn>Amount</ListColumn>
+								</ListRow>
+								{[...wallet.transactions]
+									.sort((a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf())
+									.map((transaction) => (
+										<ListRow key={transaction.id}>
+											<ListColumn>{formatDate(transaction.date)}</ListColumn>
+											<ListColumn>{transaction.title}</ListColumn>
+											<ListColumn>{transaction.note}</ListColumn>
+											<ListColumn>
+												<Number value={transaction.value} />
+											</ListColumn>
+										</ListRow>
+									))}
+							</List>
+						</Column>
+						<Column>
+							<Container id={styles.chartContainer}>
+								<Heading level={1} center>
+									TOTAL
+								</Heading>
+								<Bar options={options} data={barData} />
+							</Container>
+						</Column>
+					</Row>
+				) : (
+					<p>No wallet data available.</p>
+				)}
+			</Container>
+			<Container id="buttonContainer" bottom>
+				<Button onClick={() => setOpen(true)}>+</Button>
+			</Container>
 			<Modal className={modalStyle['trans-modal']} isOpen={isOpen} onClose={() => setOpen(false)}>
 				<span className={modalStyle['modal-heading']}>Transaction</span>
 				<label>Title</label>
