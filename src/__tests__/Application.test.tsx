@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from '../app/store';
+import { store } from '../state/store';
 import Application from '../components/Application';
 
 test('renders app', () => {
@@ -10,5 +10,5 @@ test('renders app', () => {
         </Provider>
 	);
 
-	expect(screen.getByText(/Tsumugi/i)).toBeInTheDocument();
+	expect(screen.getByText(/Wallets/i)).toBeInTheDocument();
 });

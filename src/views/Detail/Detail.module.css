@@ -1,0 +1,69 @@
+#transaction-table {
+    float: left;
+}
+
+#transaction-table th,
+#transaction-table td {
+	padding: 12px 15px;
+}
+
+#transaction-table tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+#transaction-table tbody tr:nth-of-type(even) {
+	background-color: var(--dark-gray-2);
+}
+
+#transaction-table tbody tr:last-of-type {
+	border-bottom: 2px solid var(--dark-gray-2);
+}
+
+#transaction-table tbody tr.active-row {
+	font-weight: bold;
+	color: var(--dark-gray-3);
+}
+
+#detail-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: normal;
+	align-items: normal;
+	align-content: normal;
+    height: 100%
+}
+
+#detail-container #data-container {
+	display: block;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: auto;
+	align-self: auto;
+	order: 0;
+}
+
+#detail-container #button-container {
+	display: block;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+	align-self: auto;
+	order: 0;
+    padding-bottom: 20px;
+}
+
+.chart-container {
+    float: right;
+    max-height: 730px;
+    background-color: var(--dark-gray-2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+    .chart-container h3 {
+        text-align: center;
+    }
+
+    .chart-container #trend {
+        text-align: center;
+    }
