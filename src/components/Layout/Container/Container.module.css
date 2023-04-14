@@ -13,7 +13,8 @@
 }
 
 .container.bottom {
-	display: block;
+	display: flex;
+    flex-flow: row;
 	flex-grow: 0;
 	flex-shrink: 1;
 	flex-basis: auto;

@@ -1,11 +1,11 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
+import { clearWallets, uploadFile } from '../../state/slices/walletSlice';
 
 import View from '../../components/Layout/View/View';
 import Container from '../../components/Layout/Container/Container';
 
 import Button from '../../components/Button/Button';
-import { uploadData } from '../../state/slices/walletSlice';
 
 const About: FC = () => {
 	const wallets = useAppSelector((state) => state.wallets.data);
@@ -16,7 +16,7 @@ const About: FC = () => {
 
     const ref = useRef<HTMLInputElement>(null);
 
-	const exportToJSON = () => {
+	const handleExportToJSON = () => {
 		const element = document.createElement('a');
 		var blob = new Blob([JSON.stringify(wallets)], { type: 'text/plain;charset=utf-8' });
 		element.href = URL.createObjectURL(blob);
@@ -26,7 +26,7 @@ const About: FC = () => {
 		document.body.removeChild(element);
 	};
 
-	const handleChangeFile = (files: FileList | null) => {
+	const handleUploadFile = (files: FileList | null) => {
 		if (!files || files.length < 1) return;
 
 		setFile(files[0]);
@@ -40,7 +40,7 @@ const About: FC = () => {
         reader.onerror = () => console.error('error reading file');
 		reader.onload = (evt: ProgressEvent<FileReader>) => {
             if (!evt.target || ! evt.target.result) return;
-            dispatch(uploadData(evt.target.result.toString()));
+            dispatch(uploadFile(evt.target.result.toString()));
 		};
 	}, [dispatch, file]);
 
@@ -52,12 +52,14 @@ const About: FC = () => {
 				<p>v0.0.1</p>
 			</Container>
 			<Container id="versionContainer" bottom>
-				<Button onClick={exportToJSON}>Export Data</Button>
+				<Button onClick={handleExportToJSON} hide={wallets.length < 1}>
+					Export Data
+				</Button>
 				<Button onClick={() => ref.current?.click()}>Upload Data</Button>
-				<Button type="danger" onClick={() => window.localStorage.clear()}>
+				<Button type="danger" hide={wallets.length < 1} display='right' onClick={() => dispatch(clearWallets())}>
 					Clear Data
 				</Button>
-				<input ref={ref} type="file" onChange={(e) => handleChangeFile(e.target.files)} hidden />
+				<input ref={ref} type="file" onChange={(e) => handleUploadFile(e.target.files)} hidden />
 			</Container>
 		</View>
 	);

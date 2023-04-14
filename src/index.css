@@ -10,6 +10,8 @@
 	--red-1: #f04747;
 	--red-2: #d83f3f;
 
+    --special-color: #f4dcab;
+
 	--header-size: 50px;
 	--footer-size: 50px;
 
@@ -38,6 +40,7 @@ label {
 }
 
 input[type='text'],
+input[type='number'],
 input[type='date'],
 textarea {
 	border-radius: 5px;
@@ -47,6 +50,36 @@ textarea {
 	outline: none;
 	border: none;
 	color: var(--font-dark) !important;
+}
+
+input[type='checkbox'] {
+	background-color: var(--dark-gray-2);
+	color: var(--dark-gray-3);
+	width: 1.15em;
+	height: 1.15em;
+	border: 0.15em solid var(--dark-gray-3);
+	border-radius: 3px;
+	transform: translateY(-0.075em);
+	display: grid;
+	place-content: center;
+    cursor: pointer;
+
+    /* Reset styles */
+	margin: 0;
+	appearance: none;
+}
+
+input[type='checkbox']::before {
+	content: '';
+	width: 0.65em;
+	height: 0.65em;
+	transform: scale(0);
+	transition: 0.05s transform ease-in-out;
+	box-shadow: inset 1em 1em var(--special-color);
+}
+
+input[type='checkbox']:checked::before {
+	transform: scale(1);
 }
 
 select,

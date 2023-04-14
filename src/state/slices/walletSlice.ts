@@ -27,7 +27,11 @@ export const walletsSlice = createSlice({
 			const stored = window.localStorage.getItem('wallets');
 			if (stored) state.data = JSON.parse(stored) as IWallet[];
 		},
-        uploadData: (state, action: PayloadAction<string>) => {
+        clearWallets: (state) => {
+            state.data = [];
+            window.localStorage.setItem('wallets', JSON.stringify([]));
+        },
+        uploadFile: (state, action: PayloadAction<string>) => {
             try {
                 state.data = JSON.parse(action.payload) as IWallet[];
                 window.localStorage.setItem('wallets', JSON.stringify(state.data));
@@ -48,6 +52,6 @@ export const walletsSlice = createSlice({
 	}
 });
 
-export const { loadWallets, addWallet, updateWallet, uploadData } = walletsSlice.actions;
+export const { loadWallets, addWallet, updateWallet, uploadFile, clearWallets } = walletsSlice.actions;
 
 export default walletsSlice.reducer;

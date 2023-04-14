@@ -20,8 +20,14 @@
 
 .button.danger {
 	background-color: var(--red-1);
+    min-width: 100px;
 }
 
 .button.confirm {
 	background-color: var(--green-1);
+    min-width: 100px;
+}
+
+.button.right {
+    margin-left: auto;
 }

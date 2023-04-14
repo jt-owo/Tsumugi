@@ -24,6 +24,8 @@ import Modal from '../../components/Modal/Modal';
 
 import styles from './Detail.module.css';
 import modalStyle from '../../components/Modal/Modal.module.css';
+import ListCheckboxColumn from '../../components/List/ListColumn/ListCheckboxColumn';
+import ListEmptyColumn from '../../components/List/ListColumn/ListEmptyColumn';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -61,7 +63,10 @@ const Detail: FC = () => {
 
 	const [barData, setBarData] = useState<ChartData<'bar', number[], string>>({ labels: [], datasets: [] });
 
-    const { value: isOpen, toggle } = useToggle();
+	const [deleteList, setDeleteList] = useState<string[]>([]);
+
+	const { value: isOpen, toggle } = useToggle();
+	const { value: isEdit, toggle: toggleEdit } = useToggle();
 
 	const [title, setTitle] = useState('');
 	const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
@@ -94,6 +99,39 @@ const Detail: FC = () => {
 		setValue(0);
 		toggle();
 	};
+
+	const toggleItemDeleteList = (id: string) => {
+		const index = deleteList.indexOf(id);
+		if (index > -1) {
+			deleteList.splice(index, 1);
+		} else {
+			deleteList.push(id);
+		}
+
+		setDeleteList([...deleteList]);
+	};
+
+	const handleDeleteTransactions = () => {
+		const updateData = {
+			...wallet,
+			transactions: [...wallet.transactions]
+		};
+
+		deleteList.forEach((id) => {
+			const index = updateData.transactions.findIndex((x) => x.id === id);
+			if (index > -1) {
+				updateData.transactions.splice(index, 1);
+			}
+		});
+
+		dispatch(updateWallet(updateData));
+        cancelEdit();
+	};
+
+    const cancelEdit = () => {
+        setDeleteList([]);
+        toggleEdit();
+    }
 
 	useEffect(() => {
 		const revenue = wallet.transactions.filter((t) => !t.value.toString().startsWith('-'));
@@ -130,6 +168,7 @@ const Detail: FC = () => {
 									<ListColumn>Title</ListColumn>
 									<ListColumn>Note</ListColumn>
 									<ListColumn>Amount</ListColumn>
+									{isEdit && <ListEmptyColumn />}
 								</ListRow>
 								{[...wallet.transactions]
 									.sort((a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf())
@@ -141,6 +180,7 @@ const Detail: FC = () => {
 											<ListColumn>
 												<Number value={transaction.value} />
 											</ListColumn>
+											{isEdit && <ListCheckboxColumn id={transaction.id} onChange={toggleItemDeleteList} />}
 										</ListRow>
 									))}
 							</List>
@@ -160,6 +200,15 @@ const Detail: FC = () => {
 			</Container>
 			<Container id="buttonContainer" bottom>
 				<Button onClick={toggle}>+</Button>
+                <Button type="confirm" hide={isEdit || wallet.transactions.length < 1} onClick={toggleEdit}>
+                    Edit
+                </Button>
+				<Button type="danger" hide={!isEdit} onClick={cancelEdit}>
+					Cancel
+				</Button>
+				<Button type="danger" display='right' hide={deleteList.length < 1} onClick={handleDeleteTransactions}>
+					Delete Selected
+				</Button>
 			</Container>
 			<Modal className={modalStyle['trans-modal']} isOpen={isOpen} onClose={toggle}>
 				<span className={modalStyle['modal-heading']}>Transaction</span>
@@ -170,7 +219,7 @@ const Detail: FC = () => {
 				<input type="date" value={date} onChange={(e) => setDate(e.currentTarget.value)} />
 
 				<label>Amount</label>
-				<input type="text" value={value} onChange={(e) => setValue(+e.currentTarget.value)} />
+				<input type="number" value={value} onChange={(e) => setValue(+e.currentTarget.value)} />
 
 				<label>Note</label>
 				<textarea value={note} onChange={(e) => setNote(e.currentTarget.value)} />
