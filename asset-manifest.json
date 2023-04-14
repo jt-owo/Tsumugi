@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Tsumugi/static/css/main.6e58f18a.css",
+    "main.js": "/Tsumugi/static/js/main.5ac0ebc8.js",
+    "static/js/787.35cd1a91.chunk.js": "/Tsumugi/static/js/787.35cd1a91.chunk.js",
+    "index.html": "/Tsumugi/index.html",
+    "main.6e58f18a.css.map": "/Tsumugi/static/css/main.6e58f18a.css.map",
+    "main.5ac0ebc8.js.map": "/Tsumugi/static/js/main.5ac0ebc8.js.map",
+    "787.35cd1a91.chunk.js.map": "/Tsumugi/static/js/787.35cd1a91.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e58f18a.css",
+    "static/js/main.5ac0ebc8.js"
+  ]
+}
