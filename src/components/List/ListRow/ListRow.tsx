@@ -12,7 +12,7 @@ const ListRow: FC<ListRowProps> = (props) => {
 
 	let className = styles['list-row'];
 
-	if (heading) className += ' ' + styles.heading;
+	if (heading) className += ` ${styles.heading}`;
 
 	return <div className={className}>{children}</div>;
 };

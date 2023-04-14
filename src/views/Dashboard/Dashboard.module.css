@@ -2,13 +2,13 @@
 	--wallet-box-h: 150px;
 }
 
-.wallet-grid {
+#walletGrid {
 	display: grid;
 	grid-gap: 1rem;
 	gap: 55px 20px;
 }
 
-.wallet-template {
+#walletTemplate {
 	min-height: var(--wallet-box-h);
 	border: 2px dotted var(--font-light);
 	border-radius: 10px;
@@ -21,7 +21,7 @@
 	opacity: 0.5;
 }
 
-.wallet-template div {
+#walletTemplate div {
 	width: 48px;
 	height: 48px;
 	position: absolute;
@@ -78,19 +78,19 @@
 }
 
 @media (max-width: 767px) {
-	.wallet-grid {
+	#walletGrid {
 		grid-template-columns: repeat(1, 1fr);
 	}
 }
 
 @media (min-width: 768px) {
-	.wallet-grid {
+	#walletGrid {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
 @media (min-width: 992px) {
-	.wallet-grid {
+	#walletGrid {
 		grid-template-columns: repeat(3, 1fr);
 	}
 }

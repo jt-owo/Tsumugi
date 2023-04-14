@@ -14,11 +14,11 @@ const Heading: FC<HeadingProps> = (props) => {
 	let className = styles.heading;
 
 	if (level && level > 0) {
-		className += ' ' + styles['level-' + level.toString()];
+		className += ` ${styles['level-' + level.toString()]}`;
 	}
 
 	if (center) {
-		className += ' ' + styles.center;
+		className += ` ${styles.center}`;
 	}
 
 	return <div className={className}>{children}</div>;

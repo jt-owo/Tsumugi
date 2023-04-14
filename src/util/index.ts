@@ -25,3 +25,15 @@ export const formatDate = (date: string) => {
 	const ret = new Date(date);
 	return ret.toLocaleDateString();
 };
+
+export const getClassList = (...classes: string[]) => {
+    let classList = '';
+    if (classes && classes.length > 0) {
+        classes.forEach((c) => {
+            if (classList === '') classList += `${c}`;
+            else classList += ` ${c}`;
+        });
+    }
+
+    return classList;
+}

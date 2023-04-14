@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { updateWallet } from '../../state/slices/walletSlice';
 import { formatDate, newGuid, sum } from '../../util';
+import useToggle from '../../hooks/useToggle';
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartData, ChartOptions } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
@@ -60,7 +61,7 @@ const Detail: FC = () => {
 
 	const [barData, setBarData] = useState<ChartData<'bar', number[], string>>({ labels: [], datasets: [] });
 
-	const [isOpen, setOpen] = useState(false);
+    const { value: isOpen, toggle } = useToggle();
 
 	const [title, setTitle] = useState('');
 	const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
@@ -91,7 +92,7 @@ const Detail: FC = () => {
 		setDate(new Date().toISOString().substring(0, 10));
 		setNote('');
 		setValue(0);
-		setOpen(false);
+		toggle();
 	};
 
 	useEffect(() => {
@@ -158,9 +159,9 @@ const Detail: FC = () => {
 				)}
 			</Container>
 			<Container id="buttonContainer" bottom>
-				<Button onClick={() => setOpen(true)}>+</Button>
+				<Button onClick={toggle}>+</Button>
 			</Container>
-			<Modal className={modalStyle['trans-modal']} isOpen={isOpen} onClose={() => setOpen(false)}>
+			<Modal className={modalStyle['trans-modal']} isOpen={isOpen} onClose={toggle}>
 				<span className={modalStyle['modal-heading']}>Transaction</span>
 				<label>Title</label>
 				<input type="text" value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
@@ -175,7 +176,7 @@ const Detail: FC = () => {
 				<textarea value={note} onChange={(e) => setNote(e.currentTarget.value)} />
 				<div className={modalStyle['modal-buttons-container']}>
 					<button onClick={handleAddTransaction}>Add</button>
-					<button onClick={() => setOpen(false)} className={modalStyle.danger}>
+					<button onClick={toggle} className={modalStyle.danger}>
 						Cancel
 					</button>
 				</div>

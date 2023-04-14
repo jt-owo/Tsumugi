@@ -27,6 +27,14 @@ export const walletsSlice = createSlice({
 			const stored = window.localStorage.getItem('wallets');
 			if (stored) state.data = JSON.parse(stored) as IWallet[];
 		},
+        uploadData: (state, action: PayloadAction<string>) => {
+            try {
+                state.data = JSON.parse(action.payload) as IWallet[];
+                window.localStorage.setItem('wallets', JSON.stringify(state.data));
+            } catch (e) {
+                console.error("Error while parsing uploaded file", action.payload);
+            }
+        },
 		updateWallet: (state, action: PayloadAction<IWallet>) => {
 			const wallet = state.data.find((x) => x.id === action.payload.id);
 			if (wallet) {
@@ -40,6 +48,6 @@ export const walletsSlice = createSlice({
 	}
 });
 
-export const { loadWallets, addWallet, updateWallet } = walletsSlice.actions;
+export const { loadWallets, addWallet, updateWallet, uploadData } = walletsSlice.actions;
 
 export default walletsSlice.reducer;

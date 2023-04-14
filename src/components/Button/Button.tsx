@@ -13,7 +13,7 @@ const Button: FC<ButtonProps> = (props) => {
 
 	let className = styles.button;
 	if (type) {
-		className = styles[type];
+		className += ` ${styles[type]}`;
 	}
 
 	return (

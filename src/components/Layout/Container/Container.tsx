@@ -14,7 +14,7 @@ const Container: FC<ContainerProps> = (props) => {
 	let className = styles.container;
 
 	if (bottom) {
-		className += ' ' + styles.bottom;
+		className += ` ${styles.bottom}`;
 	}
 
 	return (

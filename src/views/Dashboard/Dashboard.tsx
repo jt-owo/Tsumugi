@@ -1,6 +1,8 @@
 import { FC, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { addWallet } from '../../state/slices/walletSlice';
+import { getClassList } from '../../util';
+import useToggle from '../../hooks/useToggle';
 
 import View from '../../components/Layout/View/View';
 import Container from '../../components/Layout/Container/Container';
@@ -18,13 +20,13 @@ const Dashboard: FC = () => {
 
 	const dispatch = useAppDispatch();
 
-	const [isOpen, setOpen] = useState(false);
+    const { value: isOpen, toggle } = useToggle();
 	const [walletName, setWalletName] = useState('');
 
 	const handleAddWallet = () => {
 		if (walletName === '') return;
 
-		setOpen(false);
+		toggle();
 		dispatch(addWallet(walletName));
 		setWalletName('');
 	};
@@ -33,24 +35,19 @@ const Dashboard: FC = () => {
 		<View>
 			<Container id="dashboardContainer">
 				<Heading>Wallets</Heading>
-				<div className={styles['wallet-grid']}>
-					{wallets && wallets.map((wallet) => <Wallet key={wallet.id} wallet={wallet} />)}
-					<div className={styles['wallet-template']}>
-						<div
-							className={styles.circle + ' ' + styles.plus}
-							onClick={() => {
-								setOpen(true);
-							}}
-						></div>
+				<div id={styles.walletGrid}>
+					{wallets && [...wallets].sort((a, b) => a.name.localeCompare(b.name)).map((wallet) => <Wallet key={wallet.id} wallet={wallet} />)}
+					<div id={styles.walletTemplate}>
+						<div className={getClassList(styles.circle, styles.plus)} onClick={toggle}></div>
 					</div>
 				</div>
 			</Container>
-			<Modal isOpen={isOpen} onClose={() => setOpen(false)}>
+			<Modal isOpen={isOpen} onClose={toggle}>
 				<span className={modalStyle['modal-heading']}>Wallet Name</span>
 				<input type="text" value={walletName} onChange={(e) => setWalletName(e.currentTarget.value)} />
 				<div className={modalStyle['modal-buttons-container']}>
 					<button onClick={handleAddWallet}>Add</button>
-					<button onClick={() => setOpen(false)} className={modalStyle.danger}>
+					<button onClick={toggle} className={modalStyle.danger}>
 						Cancel
 					</button>
 				</div>

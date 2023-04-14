@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-import styles from './Navigation.module.css';
 import Container from '../Container/Container';
+
+import styles from './Navigation.module.css';
 
 const Navigation: FC = () => {
 	const location = useLocation();
@@ -16,7 +17,7 @@ const Navigation: FC = () => {
 			<NavLink to="/" className={getActiveStyle('/')}>
 				Dashboard
 			</NavLink>
-			<NavLink to="/about" className={styles.last + ' ' + getActiveStyle('/about')}>
+			<NavLink to="/about" className={`${styles.last} ${getActiveStyle('/about')}`}>
 				About
 			</NavLink>
 		</Container>
