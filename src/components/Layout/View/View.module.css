@@ -1,0 +1,11 @@
+.content-container {
+	display: flex;
+	flex-grow: 0;
+	flex-shrink: 1;
+    flex-direction: column;
+	flex-basis: 100%;
+
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}

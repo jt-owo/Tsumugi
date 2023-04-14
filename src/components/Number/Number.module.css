@@ -1,0 +1,7 @@
+.positive {
+	color: var(--green-1);
+}
+
+.negative {
+	color: var(--red-1);
+}

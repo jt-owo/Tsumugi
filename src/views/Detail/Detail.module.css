@@ -1,0 +1,15 @@
+#chartContainer {
+	display: flex;
+	margin: 0 auto;
+
+	max-height: 750px;
+	max-width: 550px;
+
+	background-color: var(--dark-gray-2);
+	box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.15);
+}
+
+#chartContainer canvas {
+	padding-left: 10px;
+	padding-right: 10px;
+}

@@ -1,0 +1,10 @@
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	flex-grow: 0;
+}
+
+.row:last-child {
+	flex-grow: 1;
+}
