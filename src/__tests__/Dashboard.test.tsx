@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../state/store';
-import Application from '../components/Application';
+import Dashboard from '../views/Dashboard/Dashboard';
 
-test('renders app', () => {
+test('renders dashbaord', () => {
 	render(
 		<Provider store={store}>
-			<Application />
+			<Dashboard />
 		</Provider>
 	);
 
